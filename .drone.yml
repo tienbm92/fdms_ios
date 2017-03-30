@@ -1,0 +1,16 @@
+build:
+  image: fdplugins/remote-build:0.7.4
+  commands:
+    - ruby ~/remote_build.rb
+    - framgia-ci upload
+
+  environment:
+    # config remote build machine and user
+    - SSH_KEY=$$SSH_KEY
+    - USER_NAME=$$USER_NAME
+    - KEY_CHAIN=$$KEY_CHAIN
+    - KEY_CHAIN_PASS=$$KEY_CHAIN_PASS
+    - REMOTE_IP=$$REMOTE_IP
+    # config beta build. When push event to branch
+    - BUILD_BRANCH=master
+    - BUILD_LANE=beta
