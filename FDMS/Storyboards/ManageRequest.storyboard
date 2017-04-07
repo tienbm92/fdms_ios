@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Manage Request-->
+        <!--Request Management-->
         <scene sceneID="UVO-M2-3OO">
             <objects>
                 <viewController id="0Ys-ub-xJ1" customClass="ManageRequestVC" customModule="FDMS" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +132,7 @@
                             <constraint firstItem="Vky-of-jRH" firstAttribute="top" secondItem="rLR-RD-5kx" secondAttribute="bottom" id="uQh-rO-oaF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Manage Request" id="Tcl-6i-cJH">
+                    <navigationItem key="navigationItem" title="Request Management" id="Tcl-6i-cJH">
                         <barButtonItem key="backBarButtonItem" title=" " id="qNh-Zt-jzy"/>
                         <barButtonItem key="rightBarButtonItem" image="ic_add" id="DhZ-SS-imU">
                             <connections>
@@ -324,7 +324,7 @@
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="23x-DU-AFc" id="yfy-vm-GE0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-RU-YUe">
@@ -345,7 +345,7 @@
                                         <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfh-jb-Wow" id="kyc-yq-6ez">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="🔽Device Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oE3-sK-tTe">
@@ -373,7 +373,7 @@
                                         <rect key="frame" x="0.0" y="167" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V1V-F3-lSY" id="Ox6-oL-6tD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add To Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQI-zK-9UV">
@@ -419,7 +419,7 @@
             </objects>
             <point key="canvasLocation" x="4868" y="1455.9220389805098"/>
         </scene>
-        <!--Detail Request-->
+        <!--Request Detail-->
         <scene sceneID="Su1-3L-ldJ">
             <objects>
                 <viewController id="xF0-nW-Grs" customClass="RequestDetailVC" customModule="FDMS" customModuleProvider="target" sceneMemberID="viewController">
@@ -562,7 +562,7 @@
                             <constraint firstItem="tue-84-xIA" firstAttribute="top" secondItem="ZcR-Ke-r3x" secondAttribute="bottom" id="r0o-aS-vVV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail Request" id="tqc-a7-zlw"/>
+                    <navigationItem key="navigationItem" title="Request Detail" id="tqc-a7-zlw"/>
                     <connections>
                         <outlet property="listRequestTableView" destination="ZcR-Ke-r3x" id="a5N-9s-YqM"/>
                     </connections>

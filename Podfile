@@ -6,4 +6,6 @@ target 'FDMS' do
   pod 'IDMPhotoBrowser'
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'PullToRefreshSwift'
+  pod 'Charts'
+
 end

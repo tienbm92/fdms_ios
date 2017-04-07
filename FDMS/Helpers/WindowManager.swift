@@ -54,8 +54,8 @@ class WindowManager: NSObject {
         DispatchQueue.main.async {
             self.progressWindow.isHidden = false
             self.progressView.frame = CGRect(x: 0, y: 0,
-                width: self.progressWindow.bounds.size.width,
-                height: self.progressWindow.bounds.size.height)
+                                             width: self.progressWindow.bounds.size.width,
+                                             height: self.progressWindow.bounds.size.height)
             self.progressView.removeFromSuperview()
             self.progressWindow.addSubview(self.progressView)
             self.progressWindow.bringSubview(toFront: self.progressView)
@@ -75,7 +75,7 @@ class WindowManager: NSObject {
     func showMessage(message: String, title: String?, completion: ((UIAlertAction) -> Void)?) {
         self.alertWindow.windowLevel = self.getCurrentWindowLevel() + 0.1
         let alertController = UIAlertController(title: title ?? "Alert".localized, message: message,
-            preferredStyle: .alert)
+                                                preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK".localized,
                                      style: .default) { [weak self] (action) in
             self?.alertWindow.isHidden = true
@@ -85,7 +85,7 @@ class WindowManager: NSObject {
         DispatchQueue.main.async {
             self.alertWindow.isHidden = false
             self.alertWindow.rootViewController?.present(alertController, animated: true,
-                completion: nil)
+                                                         completion: nil)
         }
     }
     

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
+import AVFoundation
 import BarcodeScanner
 import UIKit
 
@@ -29,17 +30,18 @@ class MainTabBarController: UITabBarController {
             if let numberOfVC = self.viewControllers?.count {
                 middleButtonView.frame.size = CGSize(width: screenWidth / CGFloat(numberOfVC), height: 70)
             }
-            middleButtonView.frame.origin.x = 
-                self.view.bounds.width / 2 - middleButtonView.frame.size.width / 2
-            middleButtonView.frame.origin.y = 
-                self.view.bounds.height - middleButtonView.frame.height
-            middleButtonView.addTarget(self, 
-                action: #selector(scanButtonTapped(sender:)), for: .touchUpInside)
+            middleButtonView.frame.origin.x = self.view.bounds.width / 2 - middleButtonView.frame.size.width / 2
+            middleButtonView.frame.origin.y = self.view.bounds.height - middleButtonView.frame.height
+            middleButtonView.addTarget(self, action: #selector(scanButtonTapped(sender:)), for: .touchUpInside)
             self.view.addSubview(middleButtonView)
         }
     }
     
     func scanButtonTapped(sender: UIButton) {
+        guard AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) != nil else {
+            WindowManager.shared.showMessage(message: "Camera Not Found".localized, title: nil, completion: nil)
+            return
+        }
         let scanBarcodeController = BarcodeScannerController()
         scanBarcodeController.codeDelegate = self
         scanBarcodeController.errorDelegate = self
@@ -51,12 +53,10 @@ class MainTabBarController: UITabBarController {
 
 extension MainTabBarController: BarcodeScannerCodeDelegate {
     
-    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String,
-                        type: String) {
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         print(code)
         print(type)
-        let delayTime = 
-            DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             controller.resetWithError()
         }
