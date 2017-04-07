@@ -10,8 +10,8 @@ import UIKit
 
 class MiddleButton: UIView {
     
-    @IBOutlet weak private var middleButton: UIButton!
-    @IBOutlet weak private var middleButtonLabel: UILabel!
+    @IBOutlet private weak var middleButton: UIButton!
+    @IBOutlet private weak var middleButtonLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -5,3 +5,32 @@
   Created by Nguyen Quoc Tinh on 3/31/17.
   Copyright © 2017 Framgia. All rights reserved.
 */
+
+// MARK: - Alert
+"OK";
+"Alert";
+"Loading";
+"Cancel";
+
+// MARK: - Action
+"Change Image";
+"Take a photo";
+"Open Photo Library";
+"Send request";
+
+// MARK: - Error
+"Camera Not Found";
+"Library Not Found";
+"Photo Error";
+
+// MARK: - Title
+"Device";
+"Edit";
+"Purchase Date";
+"Price";
+"Status";
+"User";
+"Category";
+"Code";
+"Delete Device";
+"Device Info";

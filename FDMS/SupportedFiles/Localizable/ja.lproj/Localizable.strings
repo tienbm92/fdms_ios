@@ -5,3 +5,32 @@
   Created by Nguyen Quoc Tinh on 3/31/17.
   Copyright © 2017 Framgia. All rights reserved.
 */
+
+// MARK: - Alert
+"OK" = "OK";
+"Alert" = "警報";
+"Loading" = "読み込み中";
+"Cancel" = "キャンセル";
+
+// MARK: - Action
+"Change Image" = "画像を変更する";
+"Take a photo" = "写真を撮る";
+"Open Photo Library" = "写真ライブラリを開く";
+"Send request" = "リクエストを送信する";
+
+// MARK: - Error
+"Camera Not Found" = "カメラが見つかりません";
+"Library Not Found" = "ライブラリが見つかりません";
+"Photo Error" = "写真エラー";
+
+// MARK: - Title
+"Device" = "デバイス";
+"Edit" = "編集";
+"Purchase Date" = "購入日";
+"Price" = "価格";
+"Status" = "状態";
+"User" = "ユーザー";
+"Category" = "カテゴリー";
+"Code" = "コード";
+"Delete Device" = "デバイスを削除する";
+"Device Info" = "デバイス情報";
