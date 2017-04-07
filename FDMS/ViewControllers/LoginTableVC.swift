@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  LoginTableVC.swift
 //  FDMS
 //
 //  Created by Nguyen Quoc Tinh on 3/31/17.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginTableVC: UITableViewController {
 
 }

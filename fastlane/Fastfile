@@ -17,7 +17,7 @@ default_platform :ios
 platform :ios do
   before_all do
     # run pod install before_all
-    # cocoapods
+    cocoapods
     # clear_derived_data
   end
 
@@ -32,7 +32,7 @@ platform :ios do
 
   lane :build do
     xcodebuild(
-      project: "FDMS.xcodeproj",
+      workspace: "FDMS.xcworkspace",
       scheme: "FDMS",
       configuration: "Debug",
       clean: true,
