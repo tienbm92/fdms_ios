@@ -1,8 +1,7 @@
 build:
-  image: fdplugins/remote-build:0.7.4
+  image: fdplugins/remote-build:0.7.7
   commands:
     - ruby ~/remote_build.rb
-    - framgia-ci upload
 
   environment:
     # config remote build machine and user
