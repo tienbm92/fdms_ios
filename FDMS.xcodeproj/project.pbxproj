@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */; };
-		082C3BCE1E9791D7008A4B81 /* RequestDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082C3BCD1E9791D7008A4B81 /* RequestDetailVC.swift */; };
+		0863A3261EA062CC00039AAF /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */; };
+		086A11001E9DE36E0007CA6A /* ManageRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */; };
+		086AEE0C1E9F294D00D69F5E /* ListRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */; };
+		086AEE0F1E9F294D00D69F5E /* RequestDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */; };
+		086AEE121E9F298E00D69F5E /* DeviceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE111E9F298E00D69F5E /* DeviceRequestCell.swift */; };
+		086AEE181E9F2AFD00D69F5E /* ManageRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */; };
+		086AEE1B1E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE191E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift */; };
+		086AEE1C1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */; };
+		086AEE1E1E9F660400D69F5E /* NewRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */; };
+		086AEE201E9F8BB100D69F5E /* AddRequestDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */; };
 		0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891D77B1E9B466000400F3C /* ButtonCell.swift */; };
 		0891D77E1E9B466000400F3C /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0891D77C1E9B466000400F3C /* ButtonCell.xib */; };
-		0891D7801E9B468600400F3C /* DeviceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891D77F1E9B468600400F3C /* DeviceRequestCell.swift */; };
 		0891D7851E9B6B3C00400F3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891D7841E9B6B3C00400F3C /* Constants.swift */; };
-		0891D7871E9B8D3700400F3C /* ListRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891D7861E9B8D3700400F3C /* ListRequestVC.swift */; };
 		11405D911E8CEF0D00E32F95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11405D901E8CEF0D00E32F95 /* AppDelegate.swift */; };
 		11405D981E8CEF0D00E32F95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11405D971E8CEF0D00E32F95 /* Assets.xcassets */; };
 		11577D081E9DC8E000DE7E22 /* DeviceEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */; };
 		11577D091E9DC8E000DE7E22 /* DeviceHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D041E9DC8E000DE7E22 /* DeviceHistoryVC.swift */; };
 		11577D0A1E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D051E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift */; };
-		11577D0C1E9DC8E000DE7E22 /* DeviceManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D071E9DC8E000DE7E22 /* DeviceManagementVC.swift */; };
 		11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D0D1E9DC94C00DE7E22 /* DeviceUsingVC.swift */; };
 		11577D121E9DD8E600DE7E22 /* Device.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11577D111E9DD8E600DE7E22 /* Device.storyboard */; };
 		11577D141E9DDE8600DE7E22 /* DeviceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */; };
@@ -31,7 +37,6 @@
 		5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5547486A1E8E4BB80083A687 /* UIView+Extension.swift */; };
 		555E44BB1E91FDC900153C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */; };
 		555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */; };
-		555E44BF1E91FF8A00153C61 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44BE1E91FF8A00153C61 /* UIViewController+Extension.swift */; };
 		555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */; };
 		555E44C41E9200E900153C61 /* MiddleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555E44C31E9200E900153C61 /* MiddleButton.xib */; };
 		555E44C61E92041500153C61 /* MiddleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44C51E92041500153C61 /* MiddleButton.swift */; };
@@ -41,12 +46,19 @@
 
 /* Begin PBXFileReference section */
 		082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogetPasswordTableVC.swift; sourceTree = "<group>"; };
-		082C3BCD1E9791D7008A4B81 /* RequestDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailVC.swift; sourceTree = "<group>"; };
+		0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageRequest.storyboard; sourceTree = "<group>"; };
+		086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRequestTableVC.swift; sourceTree = "<group>"; };
+		086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailVC.swift; sourceTree = "<group>"; };
+		086AEE111E9F298E00D69F5E /* DeviceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequestCell.swift; sourceTree = "<group>"; };
+		086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRequestVC.swift; sourceTree = "<group>"; };
+		086AEE191E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceRequestCell.swift; sourceTree = "<group>"; };
+		086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDeviceRequestCell.xib; sourceTree = "<group>"; };
+		086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestVC.swift; sourceTree = "<group>"; };
+		086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRequestDeviceVC.swift; sourceTree = "<group>"; };
 		0891D77B1E9B466000400F3C /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		0891D77C1E9B466000400F3C /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
-		0891D77F1E9B468600400F3C /* DeviceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequestCell.swift; sourceTree = "<group>"; };
 		0891D7841E9B6B3C00400F3C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0891D7861E9B8D3700400F3C /* ListRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRequestVC.swift; sourceTree = "<group>"; };
 		11405D8D1E8CEF0D00E32F95 /* FDMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FDMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11405D901E8CEF0D00E32F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11405D971E8CEF0D00E32F95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,7 +80,6 @@
 		5547486A1E8E4BB80083A687 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		555E44BE1E91FF8A00153C61 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		555E44C31E9200E900153C61 /* MiddleButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiddleButton.xib; sourceTree = "<group>"; };
 		555E44C51E92041500153C61 /* MiddleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleButton.swift; sourceTree = "<group>"; };
@@ -89,6 +100,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		086AEE071E9F294D00D69F5E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */,
+				086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */,
+				086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */,
+				086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */,
+				086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		086AEE101E9F298E00D69F5E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				086AEE111E9F298E00D69F5E /* DeviceRequestCell.swift */,
+				086AEE191E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift */,
+				086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		0891D7811E9B6AC800400F3C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,9 +201,9 @@
 		554748421E8E33E60083A687 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */,
 				11577D151E9DE8EF00DE7E22 /* String+Extension.swift */,
 				5547486A1E8E4BB80083A687 /* UIView+Extension.swift */,
-				555E44BE1E91FF8A00153C61 /* UIViewController+Extension.swift */,
 				555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */,
 			);
 			path = Extensions;
@@ -196,6 +229,7 @@
 				555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */,
 				554748621E8E39700083A687 /* Main.storyboard */,
 				11577D111E9DD8E600DE7E22 /* Device.storyboard */,
+				086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -212,12 +246,11 @@
 			isa = PBXGroup;
 			children = (
 				11577D021E9DC8BA00DE7E22 /* Device */,
+				086AEE071E9F294D00D69F5E /* Request */,
 				554748681E8E434A0083A687 /* LoginTableVC.swift */,
 				555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */,
 				555E44C71E920BE900153C61 /* DashboardTableVC.swift */,
 				082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */,
-				082C3BCD1E9791D7008A4B81 /* RequestDetailVC.swift */,
-				0891D7861E9B8D3700400F3C /* ListRequestVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -225,11 +258,11 @@
 		555E44C21E92008700153C61 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				086AEE101E9F298E00D69F5E /* Request */,
 				555E44C31E9200E900153C61 /* MiddleButton.xib */,
 				555E44C51E92041500153C61 /* MiddleButton.swift */,
 				0891D77B1E9B466000400F3C /* ButtonCell.swift */,
 				0891D77C1E9B466000400F3C /* ButtonCell.xib */,
-				0891D77F1E9B468600400F3C /* DeviceRequestCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -312,8 +345,10 @@
 				11577D121E9DD8E600DE7E22 /* Device.storyboard in Resources */,
 				554748561E8E37040083A687 /* Localizable.strings in Resources */,
 				0891D77E1E9B466000400F3C /* ButtonCell.xib in Resources */,
+				086A11001E9DE36E0007CA6A /* ManageRequest.storyboard in Resources */,
 				555E44C41E9200E900153C61 /* MiddleButton.xib in Resources */,
 				11405D981E8CEF0D00E32F95 /* Assets.xcassets in Resources */,
+				086AEE1C1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,27 +408,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				555E44C61E92041500153C61 /* MiddleButton.swift in Sources */,
-				555E44BF1E91FF8A00153C61 /* UIViewController+Extension.swift in Sources */,
-				0891D7801E9B468600400F3C /* DeviceRequestCell.swift in Sources */,
-				082C3BCE1E9791D7008A4B81 /* RequestDetailVC.swift in Sources */,
-				11577D0C1E9DC8E000DE7E22 /* DeviceManagementVC.swift in Sources */,
 				11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */,
+				086AEE0F1E9F294D00D69F5E /* RequestDetailVC.swift in Sources */,
 				11577D0A1E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift in Sources */,
 				11405D911E8CEF0D00E32F95 /* AppDelegate.swift in Sources */,
 				555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */,
 				5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */,
 				554748691E8E434A0083A687 /* LoginTableVC.swift in Sources */,
 				11577D161E9DE8EF00DE7E22 /* String+Extension.swift in Sources */,
-				082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */,
-				0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */,
-				0891D7871E9B8D3700400F3C /* ListRequestVC.swift in Sources */,
-				0891D7851E9B6B3C00400F3C /* Constants.swift in Sources */,
 				11577D091E9DC8E000DE7E22 /* DeviceHistoryVC.swift in Sources */,
+				115A18FE1E9769C200F828B0 /* WindowManager.swift in Sources */,
+				086AEE121E9F298E00D69F5E /* DeviceRequestCell.swift in Sources */,
+				11577D141E9DDE8600DE7E22 /* DeviceInfoVC.swift in Sources */,
+				0863A3261EA062CC00039AAF /* UIViewController+Extension.swift in Sources */,
+				11577D081E9DC8E000DE7E22 /* DeviceEditVC.swift in Sources */,
+				082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */,
+				086AEE201E9F8BB100D69F5E /* AddRequestDeviceVC.swift in Sources */,
+				0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */,
 				555E44C81E920BE900153C61 /* DashboardTableVC.swift in Sources */,
 				555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */,
-				115A18FE1E9769C200F828B0 /* WindowManager.swift in Sources */,
-				11577D141E9DDE8600DE7E22 /* DeviceInfoVC.swift in Sources */,
-				11577D081E9DC8E000DE7E22 /* DeviceEditVC.swift in Sources */,
+				086AEE0C1E9F294D00D69F5E /* ListRequestTableVC.swift in Sources */,
+				086AEE181E9F2AFD00D69F5E /* ManageRequestVC.swift in Sources */,
+				086AEE1E1E9F660400D69F5E /* NewRequestVC.swift in Sources */,
+				0891D7851E9B6B3C00400F3C /* Constants.swift in Sources */,
+				086AEE1B1E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

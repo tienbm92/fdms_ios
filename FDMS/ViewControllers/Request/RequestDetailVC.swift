@@ -15,8 +15,8 @@ class RequestDetailVC: UIViewController {
     let detailRequestArray: [String] = ["tienbmDevIOS-test2", "tienbmDevIOS",
                                         "approved", "Bui Minh Tien", "Bui Minh Tien", "Chu Anh Tuan"]
     let titleButtonArray: [String] = ["Accept", "Cancel", "Edit"]
-
     @IBOutlet weak fileprivate var listRequestTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.listRequestTableView.register(UINib(nibName: "ButtonCell", bundle: nil),
