@@ -6,8 +6,8 @@
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
-import UIKit
 import BarcodeScanner
+import UIKit
 
 class MainTabBarController: UITabBarController {
 
@@ -27,14 +27,13 @@ class MainTabBarController: UITabBarController {
                  options: nil)?.first as? MiddleButton {
             let screenWidth = UIScreen.main.bounds.size.width
             if let numberOfVC = self.viewControllers?.count {
-                middleButtonView.frame.size = CGSize(width: screenWidth/CGFloat(numberOfVC), 
-                    height: 70)
+                middleButtonView.frame.size = CGSize(width: screenWidth / CGFloat(numberOfVC), height: 70)
             }
             middleButtonView.frame.origin.x = 
-                self.view.bounds.width/2 - middleButtonView.frame.size.width/2
+                self.view.bounds.width / 2 - middleButtonView.frame.size.width / 2
             middleButtonView.frame.origin.y = 
                 self.view.bounds.height - middleButtonView.frame.height
-            middleButtonView.middleButton.addTarget(self, 
+            middleButtonView.addTarget(self, 
                 action: #selector(scanButtonTapped(sender:)), for: .touchUpInside)
             self.view.addSubview(middleButtonView)
         }
@@ -53,7 +52,7 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController: BarcodeScannerCodeDelegate {
     
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, 
-        type: String) {
+                        type: String) {
         print(code)
         print(type)
         let delayTime = 

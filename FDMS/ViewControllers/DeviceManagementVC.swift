@@ -10,7 +10,7 @@ import UIKit
 
 class DeviceManagementVC: UIViewController {
 
-    @IBOutlet weak var deviceCollectionView: UICollectionView!
+    @IBOutlet weak fileprivate var deviceCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class DeviceManagementVC: UIViewController {
 extension DeviceManagementVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, 
-        numberOfItemsInSection section: Int) -> Int {
+                        numberOfItemsInSection section: Int) -> Int {
         return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, 
-        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = deviceCollectionView.dequeueReusableCell(withReuseIdentifier: "DeviceCellId", 
             for: indexPath)
         return cell
