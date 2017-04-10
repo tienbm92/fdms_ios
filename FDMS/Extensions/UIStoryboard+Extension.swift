@@ -14,4 +14,8 @@ extension UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
     }
     
+    static var infoSearch: UIStoryboard {
+        return UIStoryboard(name: "InfoSearchTableVC", bundle: nil)
+    }
+    
 }

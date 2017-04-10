@@ -10,34 +10,62 @@ import UIKit
 
 class ManageRequestVC: UIViewController {
 
+    @IBOutlet fileprivate weak var statusButton: UIButton!
+    @IBOutlet fileprivate weak var relativeButton: UIButton!
     @IBOutlet weak private var listRequestTableView: UITableView!
-    @IBOutlet weak private var requestSegment: UISegmentedControl!
-    @IBOutlet weak private var relativeToTextField: UITextField!
-    @IBOutlet weak private var requestStatusTextField: UITextField!
+    fileprivate var filter: [AnyObject] = [AnyObject]()
+    fileprivate var request: [Request] = [Request]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func relativeToButton(_ sender: UIButton) {
-        
+        guard let textButton = self.relativeButton.titleLabel?.text,
+            let listUserRelative = self.getListUserRelative() else {
+            return
+        }
+        self.pushSearchViewController(title: textButton, listUserRelative: listUserRelative, listStatus: nil)
     }
     
     @IBAction func requestStatusButton(_ sender: UIButton) {
-        
-    }
-    @IBAction func changeViewType(_ sender: UISegmentedControl) {
-        switch requestSegment.selectedSegmentIndex {
-        case 0:
-            self.sendIndex(index: 0)
-        case 1:
-            self.sendIndex(index: 1)
-        default:
-            break
+        guard let textButton = self.statusButton.titleLabel?.text,
+            let listStatus = self.getListStatus() else {
+            return
         }
+        self.pushSearchViewController(title: textButton, listUserRelative: nil, listStatus: listStatus)
     }
     
-    func sendIndex(index: Int) {
-        print("send Index")
+    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, listStatus: [RequestStatus]?) {
+        guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
+            String(describing: InfoSearchTableVC.self)) as? InfoSearchTableVC else {
+            return
+        }
+        if let listUserRelative = listUserRelative {
+            searchViewController.setProperty(input: listUserRelative)
+        } else if let listStatus = listStatus {
+            searchViewController.setProperty(input: listStatus)
+        }
+        searchViewController.title = textTitle
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    fileprivate func getListRequest() {
+        
+    }
+    
+    fileprivate func getListUserRelative() -> [User]? {
+        guard let listUserRelative = self.filter as? [User] else {
+            return nil
+        }
+        return listUserRelative
+    }
+    
+    fileprivate func getListStatus() -> [RequestStatus]? {
+        guard let listStatus = self.filter as? [RequestStatus] else {
+            return nil
+        }
+        return listStatus
     }
     
 }
@@ -53,6 +81,26 @@ extension ManageRequestVC: UITableViewDataSource {
         cell.textLabel?.text = "12asdz"
         cell.detailTextLabel?.text = "sazza12343"
         return cell
+    }
+    
+}
+
+extension ManageRequestVC: InfoSearchVCDelegate {
+    
+    func searchViewController(_ searchViewController: InfoSearchTableVC, didCloseWith filter: AnyObject?,
+                              resultOption option: OptionFilter) {
+        switch option {
+        case .user:
+            if let filterUser = filter as? User {
+                self.relativeButton.titleLabel?.text = filterUser.name
+            }
+        case .requestStatus:
+            if let filterStatus = filter as? RequestStatus {
+                self.statusButton.titleLabel?.text = filterStatus.name
+            }
+        default:
+            return
+        }
     }
     
 }

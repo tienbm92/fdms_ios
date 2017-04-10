@@ -7,35 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081751471EA891D800779B40 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081751461EA891D800779B40 /* Device.swift */; };
+		0817514A1EA8B32C00779B40 /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081751481EA8B32C00779B40 /* CellInfo.swift */; };
+		0817514B1EA8B32C00779B40 /* SectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081751491EA8B32C00779B40 /* SectionInfo.swift */; };
+		0817514E1EA8B45800779B40 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */; };
+		0817514F1EA8B45C00779B40 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB11EA6224300AA455C /* WindowManager.swift */; };
+		081751501EA8B46F00779B40 /* DeviceEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */; };
+		081751511EA8B47400779B40 /* DeviceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */; };
 		082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */; };
-		0863A3261EA062CC00039AAF /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */; };
+		08518A431EA495D100AF9066 /* EditRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08518A421EA495D100AF9066 /* EditRequestTableVC.swift */; };
+		0863A3281EA0A12F00039AAF /* InfoSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */; };
+		0863A32E1EA0D0A900039AAF /* InfoDeviceTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */; };
+		0863A3301EA0D25200039AAF /* NewRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */; };
 		086A11001E9DE36E0007CA6A /* ManageRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */; };
-		086AEE0C1E9F294D00D69F5E /* ListRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */; };
 		086AEE0F1E9F294D00D69F5E /* RequestDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */; };
 		086AEE121E9F298E00D69F5E /* DeviceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE111E9F298E00D69F5E /* DeviceRequestCell.swift */; };
 		086AEE181E9F2AFD00D69F5E /* ManageRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */; };
 		086AEE1B1E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE191E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift */; };
 		086AEE1C1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */; };
-		086AEE1E1E9F660400D69F5E /* NewRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */; };
 		086AEE201E9F8BB100D69F5E /* AddRequestDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */; };
+		0887E4C91EA70C180072A5DE /* DataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887E4C81EA70C180072A5DE /* DataValidator.swift */; };
+		088BFAB21EA6224300AA455C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB01EA6224300AA455C /* Constants.swift */; };
+		088BFABA1EA6225600AA455C /* CategoriesDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB51EA6225600AA455C /* CategoriesDevices.swift */; };
+		088BFABC1EA6225600AA455C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB71EA6225600AA455C /* Request.swift */; };
+		088BFABD1EA6225600AA455C /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB81EA6225600AA455C /* RequestStatus.swift */; };
+		088BFABE1EA6225600AA455C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB91EA6225600AA455C /* User.swift */; };
 		0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891D77B1E9B466000400F3C /* ButtonCell.swift */; };
 		0891D77E1E9B466000400F3C /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0891D77C1E9B466000400F3C /* ButtonCell.xib */; };
 		11405D911E8CEF0D00E32F95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11405D901E8CEF0D00E32F95 /* AppDelegate.swift */; };
 		11405D981E8CEF0D00E32F95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11405D971E8CEF0D00E32F95 /* Assets.xcassets */; };
-		11577D081E9DC8E000DE7E22 /* DeviceEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */; };
 		11577D091E9DC8E000DE7E22 /* DeviceHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D041E9DC8E000DE7E22 /* DeviceHistoryVC.swift */; };
 		11577D0A1E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D051E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift */; };
 		11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D0D1E9DC94C00DE7E22 /* DeviceUsingVC.swift */; };
 		11577D121E9DD8E600DE7E22 /* Device.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11577D111E9DD8E600DE7E22 /* Device.storyboard */; };
-		11577D141E9DDE8600DE7E22 /* DeviceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */; };
 		11577D161E9DE8EF00DE7E22 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D151E9DE8EF00DE7E22 /* String+Extension.swift */; };
-		115A18FE1E9769C200F828B0 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A18FD1E9769C200F828B0 /* WindowManager.swift */; };
 		554748631E8E39700083A687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554748621E8E39700083A687 /* Main.storyboard */; };
 		554748691E8E434A0083A687 /* LoginTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554748681E8E434A0083A687 /* LoginTableVC.swift */; };
 		5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5547486A1E8E4BB80083A687 /* UIView+Extension.swift */; };
-		5547E6001EA6FBD400208C6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5547E5FF1EA6FBD400208C6B /* Constants.swift */; };
-		555147441EA75B920097B188 /* SectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555147431EA75B920097B188 /* SectionInfo.swift */; };
-		555147461EA75B9F0097B188 /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555147451EA75B9F0097B188 /* CellInfo.swift */; };
 		555E44BB1E91FDC900153C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */; };
 		555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */; };
 		555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */; };
@@ -53,17 +61,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081751461EA891D800779B40 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		081751481EA8B32C00779B40 /* CellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellInfo.swift; sourceTree = "<group>"; };
+		081751491EA8B32C00779B40 /* SectionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionInfo.swift; sourceTree = "<group>"; };
 		082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogetPasswordTableVC.swift; sourceTree = "<group>"; };
+		08518A421EA495D100AF9066 /* EditRequestTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRequestTableVC.swift; sourceTree = "<group>"; };
 		0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSearchTableVC.swift; sourceTree = "<group>"; };
+		0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceTableVC.swift; sourceTree = "<group>"; };
+		0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestTableVC.swift; sourceTree = "<group>"; };
 		086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageRequest.storyboard; sourceTree = "<group>"; };
-		086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRequestTableVC.swift; sourceTree = "<group>"; };
 		086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailVC.swift; sourceTree = "<group>"; };
 		086AEE111E9F298E00D69F5E /* DeviceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequestCell.swift; sourceTree = "<group>"; };
 		086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageRequestVC.swift; sourceTree = "<group>"; };
 		086AEE191E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceRequestCell.swift; sourceTree = "<group>"; };
 		086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDeviceRequestCell.xib; sourceTree = "<group>"; };
-		086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestVC.swift; sourceTree = "<group>"; };
 		086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRequestDeviceVC.swift; sourceTree = "<group>"; };
+		0887E4C81EA70C180072A5DE /* DataValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidator.swift; sourceTree = "<group>"; };
+		088BFAB01EA6224300AA455C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		088BFAB11EA6224300AA455C /* WindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		088BFAB51EA6225600AA455C /* CategoriesDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesDevices.swift; sourceTree = "<group>"; };
+		088BFAB71EA6225600AA455C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		088BFAB81EA6225600AA455C /* RequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
+		088BFAB91EA6225600AA455C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0891D77B1E9B466000400F3C /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		0891D77C1E9B466000400F3C /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		11405D8D1E8CEF0D00E32F95 /* FDMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FDMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,14 +98,10 @@
 		11577D111E9DD8E600DE7E22 /* Device.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Device.storyboard; sourceTree = "<group>"; };
 		11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoVC.swift; sourceTree = "<group>"; };
 		11577D151E9DE8EF00DE7E22 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		115A18FD1E9769C200F828B0 /* WindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		1D13EFA9067D9DEFF37DC5D2 /* Pods-FDMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FDMS/Pods-FDMS.release.xcconfig"; sourceTree = "<group>"; };
 		554748621E8E39700083A687 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		554748681E8E434A0083A687 /* LoginTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableVC.swift; sourceTree = "<group>"; };
 		5547486A1E8E4BB80083A687 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		5547E5FF1EA6FBD400208C6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		555147431EA75B920097B188 /* SectionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionInfo.swift; sourceTree = "<group>"; };
-		555147451EA75B9F0097B188 /* CellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellInfo.swift; sourceTree = "<group>"; };
 		555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
@@ -117,11 +133,13 @@
 		086AEE071E9F294D00D69F5E /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				086AEE081E9F294D00D69F5E /* ListRequestTableVC.swift */,
 				086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */,
 				086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */,
-				086AEE1D1E9F660400D69F5E /* NewRequestVC.swift */,
 				086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */,
+				0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */,
+				0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */,
+				0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */,
+				08518A421EA495D100AF9066 /* EditRequestTableVC.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -134,6 +152,30 @@
 				086AEE1A1E9F5A4D00D69F5E /* InfoDeviceRequestCell.xib */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		088BFAAF1EA6224300AA455C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				088BFAB01EA6224300AA455C /* Constants.swift */,
+				088BFAB11EA6224300AA455C /* WindowManager.swift */,
+				0887E4C81EA70C180072A5DE /* DataValidator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		088BFAB41EA6225600AA455C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				081751481EA8B32C00779B40 /* CellInfo.swift */,
+				081751491EA8B32C00779B40 /* SectionInfo.swift */,
+				088BFAB51EA6225600AA455C /* CategoriesDevices.swift */,
+				088BFAB71EA6225600AA455C /* Request.swift */,
+				088BFAB81EA6225600AA455C /* RequestStatus.swift */,
+				088BFAB91EA6225600AA455C /* User.swift */,
+				081751461EA891D800779B40 /* Device.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		11405D841E8CEF0D00E32F95 = {
@@ -158,10 +200,10 @@
 		11405D8F1E8CEF0D00E32F95 /* FDMS */ = {
 			isa = PBXGroup;
 			children = (
-				115A18FC1E97698300F828B0 /* Helpers */,
 				554748421E8E33E60083A687 /* Extensions */,
+				088BFAAF1EA6224300AA455C /* Helpers */,
+				088BFAB41EA6225600AA455C /* Models */,
 				554748441E8E33E60083A687 /* Services */,
-				554748431E8E33E60083A687 /* Models */,
 				555E44C21E92008700153C61 /* CustomViews */,
 				554748451E8E33E60083A687 /* Storyboards */,
 				554748471E8E33E60083A687 /* ViewControllers */,
@@ -186,15 +228,6 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
-		115A18FC1E97698300F828B0 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				5547E5FF1EA6FBD400208C6B /* Constants.swift */,
-				115A18FD1E9769C200F828B0 /* WindowManager.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		2F5837F8D7012F887CDC5FC0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,15 +246,6 @@
 				555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		554748431E8E33E60083A687 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				555147431EA75B920097B188 /* SectionInfo.swift */,
-				555147451EA75B9F0097B188 /* CellInfo.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		554748441E8E33E60083A687 /* Services */ = {
@@ -404,7 +428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		82B99877F3FC605B14AD5046 /* [CP] Embed Pods Frameworks */ = {
@@ -429,37 +453,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				081751511EA8B47400779B40 /* DeviceInfoVC.swift in Sources */,
+				081751501EA8B46F00779B40 /* DeviceEditVC.swift in Sources */,
+				0817514F1EA8B45C00779B40 /* WindowManager.swift in Sources */,
+				0817514E1EA8B45800779B40 /* UIViewController+Extension.swift in Sources */,
 				5570CE521EA45ADC00C7C298 /* DeviceManagementVC.swift in Sources */,
 				55E06AC11EA5B37E009AAC60 /* DashboardVC.swift in Sources */,
+				088BFABA1EA6225600AA455C /* CategoriesDevices.swift in Sources */,
 				555E44C61E92041500153C61 /* MiddleButton.swift in Sources */,
+				0887E4C91EA70C180072A5DE /* DataValidator.swift in Sources */,
 				11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */,
+				0863A3281EA0A12F00039AAF /* InfoSearchTableVC.swift in Sources */,
+				088BFABC1EA6225600AA455C /* Request.swift in Sources */,
 				086AEE0F1E9F294D00D69F5E /* RequestDetailVC.swift in Sources */,
-				5547E6001EA6FBD400208C6B /* Constants.swift in Sources */,
 				55E06AC31EA5B403009AAC60 /* RequestOverviewVC.swift in Sources */,
-				555147461EA75B9F0097B188 /* CellInfo.swift in Sources */,
 				11577D0A1E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift in Sources */,
+				0817514A1EA8B32C00779B40 /* CellInfo.swift in Sources */,
 				11405D911E8CEF0D00E32F95 /* AppDelegate.swift in Sources */,
-				555147441EA75B920097B188 /* SectionInfo.swift in Sources */,
 				555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */,
 				5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */,
 				554748691E8E434A0083A687 /* LoginTableVC.swift in Sources */,
 				11577D161E9DE8EF00DE7E22 /* String+Extension.swift in Sources */,
 				11577D091E9DC8E000DE7E22 /* DeviceHistoryVC.swift in Sources */,
+				0817514B1EA8B32C00779B40 /* SectionInfo.swift in Sources */,
 				55E06AC51EA5B41A009AAC60 /* DeviceOverviewVC.swift in Sources */,
 				55F1D61B1EA603A7001C7B4D /* PieChartCell.swift in Sources */,
-				115A18FE1E9769C200F828B0 /* WindowManager.swift in Sources */,
+				0863A32E1EA0D0A900039AAF /* InfoDeviceTableVC.swift in Sources */,
+				081751471EA891D800779B40 /* Device.swift in Sources */,
 				086AEE121E9F298E00D69F5E /* DeviceRequestCell.swift in Sources */,
-				11577D141E9DDE8600DE7E22 /* DeviceInfoVC.swift in Sources */,
-				0863A3261EA062CC00039AAF /* UIViewController+Extension.swift in Sources */,
-				11577D081E9DC8E000DE7E22 /* DeviceEditVC.swift in Sources */,
+				0863A3301EA0D25200039AAF /* NewRequestTableVC.swift in Sources */,
+				08518A431EA495D100AF9066 /* EditRequestTableVC.swift in Sources */,
 				082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */,
 				086AEE201E9F8BB100D69F5E /* AddRequestDeviceVC.swift in Sources */,
 				0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */,
+				088BFABD1EA6225600AA455C /* RequestStatus.swift in Sources */,
 				555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */,
-				086AEE0C1E9F294D00D69F5E /* ListRequestTableVC.swift in Sources */,
 				086AEE181E9F2AFD00D69F5E /* ManageRequestVC.swift in Sources */,
-				086AEE1E1E9F660400D69F5E /* NewRequestVC.swift in Sources */,
 				086AEE1B1E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift in Sources */,
+				088BFAB21EA6224300AA455C /* Constants.swift in Sources */,
+				088BFABE1EA6225600AA455C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
