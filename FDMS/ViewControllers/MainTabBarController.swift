@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController {
 
 extension MainTabBarController: BarcodeScannerCodeDelegate {
     
-    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, 
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String,
                         type: String) {
         print(code)
         print(type)
