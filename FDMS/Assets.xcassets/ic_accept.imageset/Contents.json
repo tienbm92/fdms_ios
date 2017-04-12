@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "ic_accept.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "framgia_logo.png",
       "scale" : "2x"
     },
     {
