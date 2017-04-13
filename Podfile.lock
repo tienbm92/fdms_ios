@@ -6,8 +6,8 @@ PODS:
     - pop
     - SDWebImage (= 4.0.0)
   - MBProgressHUD (1.0.0)
-  - PagingMenuController (1.4.0)
   - pop (1.0.9)
+  - PullToRefreshSwift (3.0.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -16,17 +16,17 @@ DEPENDENCIES:
   - BarcodeScanner
   - IDMPhotoBrowser
   - MBProgressHUD (~> 1.0.0)
-  - PagingMenuController
+  - PullToRefreshSwift
 
 SPEC CHECKSUMS:
   BarcodeScanner: 266ab4b479d407b74bc4b473fa5020b4523ad9e3
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   IDMPhotoBrowser: 14505b91019a96e36479606cb582f864446dae01
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  PagingMenuController: 79a9ce7472839d9afd0a6b879af6132822644a47
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  PullToRefreshSwift: 0743b818072bfd7c9464addc2d1b987b131057ca
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: a0c6d193fd52a5be50f2cefc8b79509c2c41568b
+PODFILE CHECKSUM: ca80b803a906d853851797262bb01511bccf8baf
 
 COCOAPODS: 1.2.0

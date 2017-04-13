@@ -12,8 +12,6 @@ class DeviceHistoryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Device History Load")
-        // Do any additional setup after loading the view.
     }
 
 }
