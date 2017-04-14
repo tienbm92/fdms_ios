@@ -5,5 +5,5 @@ target 'FDMS' do
   pod 'BarcodeScanner'
   pod 'IDMPhotoBrowser'
   pod 'MBProgressHUD', '~> 1.0.0'
-  pod 'PagingMenuController'
+  pod 'PullToRefreshSwift'
 end

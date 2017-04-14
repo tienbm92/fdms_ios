@@ -565,10 +565,10 @@
             </objects>
             <point key="canvasLocation" x="510" y="2473"/>
         </scene>
-        <!--Expand TableVC-->
+        <!--Table View Controller-->
         <scene sceneID="9Gv-q8-55H">
             <objects>
-                <tableViewController id="Hjl-ZK-bHm" customClass="ExpandTableVC" customModule="FDMS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Hjl-ZK-bHm" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iQU-Mf-h0V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

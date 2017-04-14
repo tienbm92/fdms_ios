@@ -9,35 +9,45 @@
 import UIKit
 
 class DeviceManagementVC: UIViewController {
-
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var flowLayout: UICollectionViewFlowLayout!
+    
+    @IBOutlet fileprivate weak var filterView: UIView!
+    @IBOutlet fileprivate weak var filterTableView: UITableView!
+    @IBOutlet fileprivate weak var deviceTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let itemWidth = (UIScreen.main.bounds.size.width - 24.0) / 2.0
-        let itemHeight = itemWidth * 13.0 / 9.0
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        flowLayout.minimumLineSpacing = 8.0
-        flowLayout.minimumInteritemSpacing = 1.0
-        flowLayout.sectionInset = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     }
     
 }
 
-extension DeviceManagementVC: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        return 6
+extension DeviceManagementVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // For Prototype Only
+        return 10
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeviceCellId",
-            for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // For Prototype Only
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
+    }
+    
 }
 
+extension DeviceManagementVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "DeviceListToDetail", sender: nil)
+    }
+    
+}

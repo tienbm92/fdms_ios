@@ -12,7 +12,6 @@ class DeviceUsingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Device Using Load")
     }
 
 }
