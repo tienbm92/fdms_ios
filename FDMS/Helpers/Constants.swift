@@ -9,3 +9,4 @@
 import Foundation
 
 let buttonCellId = "ButtonCell"
+let infoDeviceRequestCell = "InfoDeviceRequestCell"
