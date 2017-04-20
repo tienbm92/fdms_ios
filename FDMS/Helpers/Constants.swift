@@ -10,3 +10,8 @@ import Foundation
 
 let buttonCellId = "ButtonCell"
 let infoDeviceRequestCell = "InfoDeviceRequestCell"
+let kPieChartCell = "PieChartCell"
+let kTopRequestTitleCell = "TopRequestTitleCell"
+let kTopRequestCell = "TopRequestCell"
+let kTopDeviceTitleCell = "TopDeviceTitleCell"
+let kTopDeviceCell = "TopDeviceCell"

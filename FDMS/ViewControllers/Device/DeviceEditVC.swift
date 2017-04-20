@@ -37,16 +37,14 @@ class DeviceEditVC: UITableViewController {
     }
     
     @IBAction func onChangeImagePressed(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "Change Image".localized, message: nil,
-                                            preferredStyle: .actionSheet)
-        let takePhotoAction = UIAlertAction(title: "Take a photo".localized,
-                                            style: .default) { [weak self] (_) in
+        let actionSheet = UIAlertController(title: "Change Image".localized, message: nil, preferredStyle: .actionSheet)
+        let takePhotoAction = UIAlertAction(title: "Take a photo".localized, style: .default) { [weak self] (_) in
             self?.openImagePicker(withCamera: true)
         }
         actionSheet.addAction(takePhotoAction)
-        let openLibraryAction = UIAlertAction(title: "Open Photo Library".localized,
+        let openLibraryAction = UIAlertAction(title: "Open Photo Library".localized, 
                                               style: .default) { [weak self] (_) in
-                                                self?.openImagePicker(withCamera: false)
+            self?.openImagePicker(withCamera: false)
         }
         actionSheet.addAction(openLibraryAction)
         let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
