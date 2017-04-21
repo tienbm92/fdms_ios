@@ -6,6 +6,7 @@
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
 let buttonCellId = "ButtonCell"
@@ -15,3 +16,15 @@ let kTopRequestTitleCell = "TopRequestTitleCell"
 let kTopRequestCell = "TopRequestCell"
 let kTopDeviceTitleCell = "TopDeviceTitleCell"
 let kTopDeviceCell = "TopDeviceCell"
+
+// MARK: - Constants for API
+
+let kBaseURL = "http://stg-dms.framgia.vn/api/v1/"
+let kRequestsURL = "\(kBaseURL)requests"
+let kDeviceCategoriesURL = "\(kBaseURL)device_categories"
+let kRequestStatusURL = "\(kBaseURL)request_status"
+let kUserGroupURL = "\(kBaseURL)user_group"
+let kDeviceCodeURL = "\(kBaseURL)device_code"
+let kDevicesURL = "\(kBaseURL)devices"
+let kDevicesStatus = "\(kBaseURL)device_status"
+let headers: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]

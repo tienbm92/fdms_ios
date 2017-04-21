@@ -36,7 +36,7 @@ class ManageRequestVC: UIViewController {
         self.pushSearchViewController(title: textButton, listUserRelative: nil, listStatus: listStatus)
     }
     
-    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, listStatus: [RequestStatus]?) {
+    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, listStatus: [ManagerValue]?) {
         guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
             String(describing: InfoSearchTableVC.self)) as? InfoSearchTableVC else {
             return
@@ -61,8 +61,8 @@ class ManageRequestVC: UIViewController {
         return listUserRelative
     }
     
-    fileprivate func getListStatus() -> [RequestStatus]? {
-        guard let listStatus = self.filter as? [RequestStatus] else {
+    fileprivate func getListStatus() -> [ManagerValue]? {
+        guard let listStatus = self.filter as? [ManagerValue] else {
             return nil
         }
         return listStatus
@@ -95,7 +95,7 @@ extension ManageRequestVC: InfoSearchVCDelegate {
                 self.relativeButton.titleLabel?.text = filterUser.name
             }
         case .requestStatus:
-            if let filterStatus = filter as? RequestStatus {
+            if let filterStatus = filter as? ManagerValue {
                 self.statusButton.titleLabel?.text = filterStatus.name
             }
         default:

@@ -7,5 +7,6 @@ target 'FDMS' do
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'PullToRefreshSwift'
   pod 'Charts'
-
+  pod 'Alamofire'
+  pod 'ObjectMapper'
 end
