@@ -24,7 +24,10 @@ class RequestDetailVC: UIViewController {
         self.listRequestTableView.estimatedRowHeight = 50
         self.listRequestTableView.rowHeight = UITableViewAutomaticDimension
     }
-
+    
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+    }
+    
 }
 
 extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
