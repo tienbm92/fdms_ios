@@ -14,8 +14,8 @@ enum RequestResult {
     case failure(Error)
 }
 
-enum ManagerValueResult {
-    case success([ManagerValue])
+enum OtherObjectResult {
+    case success([OtherObject])
     case failure(Error)
 }
 
@@ -32,6 +32,7 @@ enum APIServiceError: Error {
     case deleteOrUpdateError
     case deviceNotFound
     case errorSystem
+    case errorLogin
     case normal
 }
 
@@ -52,6 +53,14 @@ class RequestService {
                 "per_page": "\(page.perPage)", "page": "\(page.page)"]
         } else {
             infoDict = ["user_id": "\(uid)", "per_page": "\(page.perPage)", "page": "\(page.page)"]
+        }
+        if let statusId = statusId {
+            infoDict = ["user_id": "\(uid)", "request_status_id": "\(statusId)",
+                "per_page": "\(page.perPage)", "page": "\(page.page)"]
+        }
+        if let relativeID = relativeID {
+            infoDict = ["user_id": "\(uid)", "relative_id": "\(relativeID)",
+                "per_page": "\(page.perPage)", "page": "\(page.page)"]
         }
         Alamofire.request(kRequestsURL, method: .get, parameters: infoDict,
                           headers: headers).responseJSON { (response) in

@@ -82,7 +82,7 @@ class DeviceService {
         
     }
     
-    func getManagerValue(optionGet option: optionGetURL, completion: @escaping (ManagerValueResult) -> Void) {
+    func getOtherObject(OptionGet option: optionGetURL, completion: @escaping (OtherObjectResult) -> Void) {
         var getURL = ""
         switch option {
         case .getDeviceCategories:
@@ -108,9 +108,9 @@ class DeviceService {
                 completion(.failure(APIServiceError.errorParseJSON))
                 return
             }
-            var listResult = [ManagerValue]()
+            var listResult = [OtherObject]()
             for result in dataResult {
-                let result = ManagerValue(JSON: result)
+                let result = OtherObject(JSON: result)
                 if let result = result {
                     listResult.append(result)
                 } else {

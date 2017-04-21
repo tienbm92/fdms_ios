@@ -11,7 +11,6 @@ import Foundation
 class DataStore {
     
     static let shared: DataStore = DataStore()
-    var loggedInUser: User = User()
     var requests: [Request] = [Request]()
     var device: [Device] = [Device]()
     var currentToken: String = ""

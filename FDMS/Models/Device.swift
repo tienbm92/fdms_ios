@@ -16,7 +16,7 @@ struct Device: Mappable {
     var productionName: String = ""
     var deviceStatusId: Int?
     var deviceCategoryId: Int?
-    var picture: String?
+    var picture: PhotoPath?
     var originalPrice: Int = 0
     var boughtDate: Date?
     var printedCode: String = ""

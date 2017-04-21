@@ -14,13 +14,13 @@ class JsonParser {
     
     func parserRawToObject(JsonInput json: Any) -> (APIServiceError, [String: Any]?) {
         guard let jsonResult = json as? [String: Any],
-            let status = jsonResult["status"] as? StatusCode,
+            let status = jsonResult["status"] as? StatusCode.RawValue,
             let error = jsonResult["error"] as? Bool,
             let data = jsonResult["data"] as? [String: Any]
         else {
             return (.errorParseJSON, nil)
         }
-        if status == .notFound, error == false {
+        if status == StatusCode.notFound.rawValue, error == false {
             return (.errorNotFound, nil)
         } else {
             return (.normal, data)
@@ -29,7 +29,7 @@ class JsonParser {
     
     func parserRawToArray(JsonInput json: Any) -> (APIServiceError, [[String: Any]]?, Int?) {
         guard let jsonResult = json as? [String: Any],
-            let status = jsonResult["status"] as? StatusCode,
+            let status = jsonResult["status"] as? StatusCode.RawValue,
             let error = jsonResult["error"] as? Bool,
             let totalPages = jsonResult["total_pages"] as? Int,
             let data = jsonResult["data"] as? [[String: Any]] else {
@@ -37,14 +37,14 @@ class JsonParser {
         }
         if error {
             switch status {
-            case .deleteOrUpdateError:
+            case StatusCode.deleteOrUpdateError.rawValue:
                 return (.deleteOrUpdateError, nil, nil)
-            case .deviceNotFound:
+            case StatusCode.deviceNotFound.rawValue:
                 return (.deviceNotFound, nil, nil)
             default:
                 return (.errorSystem, nil, nil)
             }
-        } else if status == .notFound {
+        } else if status == StatusCode.notFound.rawValue {
             return (.errorNotFound, nil, nil)
         } else {
             return (.normal, data, totalPages)
@@ -53,24 +53,40 @@ class JsonParser {
     
     func parserRawNoTotalPages(JsonInput json: Any) -> (APIServiceError, [[String: Any]]?) {
         guard let jsonResult = json as? [String: Any],
-            let status = jsonResult["status"] as? StatusCode,
+            let status = jsonResult["status"] as? StatusCode.RawValue,
             let error = jsonResult["error"] as? Bool,
             let data = jsonResult["data"] as? [[String: Any]] else {
                 return (.errorParseJSON, nil)
         }
         if error {
             switch status {
-            case .deleteOrUpdateError:
+            case StatusCode.deleteOrUpdateError.rawValue:
                 return (.deleteOrUpdateError, nil)
-            case .deviceNotFound:
+            case StatusCode.deviceNotFound.rawValue:
                 return (.deviceNotFound, nil)
             default:
                 return (.errorSystem, nil)
             }
-        } else if status == .notFound {
+        } else if status == StatusCode.notFound.rawValue {
             return (.errorNotFound, nil)
         } else {
             return (.normal, data)
+        }
+    }
+    
+    func parserRawToUser(JsonInput json: Any) -> (APIServiceError, [String: Any]?, String?) {
+        guard let jsonResult = json as? [String: Any],
+            let status = jsonResult["status"] as? StatusCode.RawValue,
+            let error = jsonResult["error"] as? Bool,
+            let data = jsonResult["data"] as? [String: Any],
+            let token = jsonResult["token"] as? String
+        else {
+            return (.errorParseJSON, nil, nil)
+        }
+        if status == StatusCode.notFound.rawValue, error == false {
+            return (.errorNotFound, nil, nil)
+        } else {
+            return (.normal, data, token)
         }
     }
     

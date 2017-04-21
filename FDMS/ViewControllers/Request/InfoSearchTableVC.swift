@@ -24,11 +24,11 @@ class InfoSearchTableVC: UITableViewController {
     fileprivate var filter: [AnyObject] = [AnyObject]()
     fileprivate weak var delegate: InfoSearchVCDelegate?
     fileprivate lazy var searchResultUser: [User] = [User]()
-    fileprivate lazy var searchResultDevices: [ManagerValue] = [ManagerValue]()
-    fileprivate lazy var searchResultStatus: [ManagerValue] = [ManagerValue]()
+    fileprivate lazy var searchResultDevices: [OtherObject] = [OtherObject]()
+    fileprivate lazy var searchResultStatus: [OtherObject] = [OtherObject]()
     fileprivate lazy var filterUser: [User] = [User]()
-    fileprivate lazy var filterDevices: [ManagerValue] = [ManagerValue]()
-    fileprivate lazy var filterStatus: [ManagerValue] = [ManagerValue]()
+    fileprivate lazy var filterDevices: [OtherObject] = [OtherObject]()
+    fileprivate lazy var filterStatus: [OtherObject] = [OtherObject]()
     fileprivate var optionResult: OptionFilter = .user
     fileprivate let searchController: UISearchController = UISearchController(searchResultsController: nil)
     
@@ -99,12 +99,12 @@ class InfoSearchTableVC: UITableViewController {
                 self.filterUser = filter
             }
         } else if self.title == "Device Category" {
-            if let filter = self.filter as? [ManagerValue] {
+            if let filter = self.filter as? [OtherObject] {
                 self.filterDevices = filter
                 self.optionResult = .categoriesDevices
             }
         } else if self.title == "Status" {
-            if let filter = self.filter as? [ManagerValue] {
+            if let filter = self.filter as? [OtherObject] {
                 self.filterStatus = filter
                 self.optionResult = .requestStatus
             }
