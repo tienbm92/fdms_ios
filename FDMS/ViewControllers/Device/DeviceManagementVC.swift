@@ -28,7 +28,11 @@ class DeviceManagementVC: UIViewController {
             WindowManager.shared.hideProgressView()
             switch result {
             case let .success(devices):
-                self?.devices = devices
+                //bui minh tien 04/05/2017- begin
+                if let devices = devices as? [Device] {
+                    self?.devices = devices
+                }
+                //end
                 self?.deviceListTableView.reloadData()
             case let .failure(error):
                 print(error)
@@ -41,12 +45,12 @@ class DeviceManagementVC: UIViewController {
             switch result {
             case let .success(data):
                 var inputData: [FilterInfo] = []
-                for i in 0..<data.count {
-                    let filterElement = FilterInfo()
-                    filterElement.objectId = data[i].valueId
-                    filterElement.name = data[i].name
-                    inputData.append(filterElement)
-                }
+//                for i in 0..<data.count {
+//                    let filterElement = FilterInfo()
+//                    filterElement.objectId = data[i].valueId
+//                    filterElement.name = data[i].name
+//                    inputData.append(filterElement)
+//                }
                 self?.dataToPassing = inputData
                 self?.performSegue(withIdentifier: segueIdentifier, sender: nil)
             case let .failure(error):
@@ -68,7 +72,10 @@ class DeviceManagementVC: UIViewController {
             guard let destination = segue.destination as? DeviceInfoContainerVC else {
                 return
             }
-            destination.device = selectedDevice ?? Device()
+            //bui minh tien 04/05/2017- begin
+            destination.setValue(selectedDevice ?? Device())
+            //destination.device = selectedDevice ?? Device()
+            //end
         } else if segue.identifier == "AddDevice" {
             guard let destination = segue.destination as? DeviceCustomizationVC else {
                 return
@@ -103,6 +110,7 @@ extension DeviceManagementVC: UITableViewDataSource {
                                                         return UITableViewCell()
         }
         cell.device = devices[indexPath.row]
+        cell.setData()
         return cell
     }
     

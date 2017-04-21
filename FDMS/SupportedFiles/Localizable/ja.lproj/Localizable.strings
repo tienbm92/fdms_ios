@@ -13,24 +13,31 @@
 "Cancel" = "キャンセル";
 
 // MARK: - Action
-"Change Image" = "画像を変更する";
-"Take a photo" = "写真を撮る";
-"Open Photo Library" = "写真ライブラリを開く";
-"Send request" = "リクエストを送信する";
+"change.image" = "画像を変更する";
+"take.photo" = "写真を撮る";
+"open.photo.library" = "写真ライブラリを開く";
+"send.request" = "リクエストを送信する";
 
 // MARK: - Error
-"Camera Not Found" = "カメラが見つかりません";
-"Library Not Found" = "ライブラリが見つかりません";
-"Photo Error" = "写真エラー";
+"camera.not.found" = "カメラが見つかりません";
+"library.not.found" = "ライブラリが見つかりません";
+"photo.error" = "写真エラー";
 
 // MARK: - Title
 "Device" = "デバイス";
 "Edit" = "編集";
-"Purchase Date" = "購入日";
+"purchase.date" = "購入日";
 "Price" = "価格";
 "Status" = "状態";
 "User" = "ユーザー";
 "Category" = "カテゴリー";
 "Code" = "コード";
-"Delete Device" = "デバイスを削除する";
-"Device Info" = "デバイス情報";
+"delete.device" = "デバイスを削除する";
+"device.info" = "デバイス情報";
+
+// MARK: - Strings for DataValidator
+"not.empty" = "%@空にすることはできません";
+"format.is.invalid" = "%@形式が無効です";
+"less.than.characters" = "％@は％d文字より小さくすることはできません";
+"isLike" = "％@と％@は同じでなければなりません";
+"email.password.notEmpty" = "電子メール/パスワードは空にできません";

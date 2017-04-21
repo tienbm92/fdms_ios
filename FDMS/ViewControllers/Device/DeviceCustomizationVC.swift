@@ -92,12 +92,12 @@ class DeviceCustomizationVC: UITableViewController {
     }
     
     @IBAction func onChangeImagePressed(_ sender: Any) {
-        let actionSheet = UIAlertController(title: "Change Image".localized, message: nil, preferredStyle: .actionSheet)
-        let takePhotoAction = UIAlertAction(title: "Take a photo".localized, style: .default) { [weak self] (_) in
+        let actionSheet = UIAlertController(title: "change.image".localized, message: nil, preferredStyle: .actionSheet)
+        let takePhotoAction = UIAlertAction(title: "take.photo".localized, style: .default) { [weak self] (_) in
             self?.openImagePicker(withCamera: true)
         }
         actionSheet.addAction(takePhotoAction)
-        let openLibraryAction = UIAlertAction(title: "Open Photo Library".localized,
+        let openLibraryAction = UIAlertAction(title: "open.photo.library".localized,
                                               style: .default) { [weak self] (_) in
                                                 self?.openImagePicker(withCamera: false)
         }
@@ -118,7 +118,7 @@ class DeviceCustomizationVC: UITableViewController {
                 imagePicker.cameraCaptureMode = .photo
                 imagePicker.allowsEditing = true
             } else {
-                WindowManager.shared.showMessage(message: "Camera Not Found".localized, title: nil,
+                WindowManager.shared.showMessage(message: "camera.not.found".localized, title: nil,
                                                  completion: nil)
                 return
             }
@@ -126,7 +126,7 @@ class DeviceCustomizationVC: UITableViewController {
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 imagePicker.sourceType = .photoLibrary
             } else {
-                WindowManager.shared.showMessage(message: "Library Not Found".localized, title: nil,
+                WindowManager.shared.showMessage(message: "library.not.found".localized, title: nil,
                                                  completion: nil)
                 return
             }
@@ -143,7 +143,7 @@ extension DeviceCustomizationVC: UINavigationControllerDelegate, UIImagePickerCo
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imageView.image = image
         } else {
-            WindowManager.shared.showMessage(message: "Photo Error".localized, title: nil,
+            WindowManager.shared.showMessage(message: "photo.error".localized, title: nil,
                                              completion: nil)
         }
         picker.presentingViewController?.dismiss(animated: true, completion: nil)

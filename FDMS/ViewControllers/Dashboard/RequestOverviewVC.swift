@@ -26,7 +26,7 @@ class RequestOverviewVC: UITableViewController {
             cells.append(pieChartCell)
             return cells
         }
-        let tableSection = SectionInfo(titleForHeader: "Top Request".localized, heightForHeader: 36,
+        let tableSection = SectionInfo(titleForHeader: "top.request".localized, heightForHeader: 36,
                                        heightForFooter: 36) { () -> ([CellInfo]) in
             let titleCell = CellInfo(indentifier: kTopRequestTitleCell, heightForRow: 50)
             let contentCell = CellInfo(indentifier: kTopRequestCell, heightForRow: 44)

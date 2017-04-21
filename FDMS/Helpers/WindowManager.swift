@@ -89,4 +89,14 @@ class WindowManager: NSObject {
         }
     }
     
+    func directionTabbarVC() {
+        guard let window = self.window else {
+            return
+        }
+        let tabbarViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "MainTabBarVC")
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromTop, animations: { 
+            window.rootViewController = tabbarViewController
+        }, completion: nil)
+    }
+    
 }

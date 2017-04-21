@@ -12,36 +12,36 @@ import ObjectMapper
 enum ViewTag: Int {
     case emailTextField = 1
     case passwordTextField = 2
-    case fullNameTextField = 3
-    case retypePasswordTextField = 4
+    case retypePasswordTextField = 3
 }
 
 class User: Mappable {
+    
     var uid: Int?
     var firstName: String = ""
     var lastName: String = ""
     var name: String {
-        return firstName + lastName
+        return "\(firstName) \(lastName)"
     }
     var email: String?
     var address: String = ""
     var password: String?
     var resetDigest: String?
-    var createdBy: Int?
-    var updatedBy: Int?
-    var createdAt: String = ""
-    var updatedAt: String = ""
+    var createdBy: Date?
+    var updatedBy: Date?
+    var createdAt: Date?
+    var updatedAt: Date?
     var rememberDigest: String = ""
     var avatar: String?
     var fromExcel: Bool = false
     var gender: String = ""
     var role: String = ""
-    var birthday: String = ""
+    var birthday: Date?
     var employeeCode: String?
     var status: String = ""
-    var contractDate: String?
-    var startProbationDate: String?
-    var endProbationDate: String?
+    var contractDate: Date?
+    var startProbationDate: Date?
+    var endProbationDate: Date?
     var rememberMe: Bool = false
     
     required init?(map: Map) {
@@ -55,21 +55,21 @@ class User: Mappable {
         address <- map["address"]
         password <- map["password_digest"]
         resetDigest <- map["reset_digest"]
-        createdBy <- map["created_by"]
-        updatedBy <- map["updated_by"]
-        createdAt <- map["created_at"]
-        updatedAt <- map["updated_at"]
+        createdBy <- (map["created_by"], DateTransform())
+        updatedBy <- (map["updated_by"], DateTransform())
+        createdAt <- (map["created_at"], DateTransform())
+        updatedAt <- (map["updated_at"], DateTransform())
         rememberDigest <- map["remember_digest"]
         avatar <- map["avatar"]
         fromExcel <- map["from_excel"]
         gender <- map["gender"]
         role <- map["role"]
-        birthday <- map["birthday"]
+        birthday <- (map["birthday"], DateTransform())
         employeeCode <- map["employee_code"]
         status <- map["status"]
-        contractDate <- map["contract_date"]
-        startProbationDate <- map["start_probation_date"]
-        endProbationDate <- map["end_probation_date"] 
+        contractDate <- (map["contract_date"], DateTransform())
+        startProbationDate <- (map["start_probation_date"], DateTransform())
+        endProbationDate <- (map["end_probation_date"], DateTransform())
     }
     
     init?(email: String?, password: String?, error: @escaping (String, Int) -> Void) {

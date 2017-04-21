@@ -13,28 +13,34 @@
 "Cancel";
 
 // MARK: - Action
-"Change Image";
-"Take a photo";
-"Open Photo Library";
-"Send request";
+"change.image" = "Change Image";
+"take.photo" = "Take a photo";
+"open.photo.library" = "Open Photo Library";
+"send.request" = "Send request";
 
 // MARK: - Error
-"Camera Not Found";
-"Library Not Found";
-"Photo Error";
+"camera.not.found" = "Camera Not Found";
+"library.not.found" = "Library Not Found";
+"photo.error" = "Photo Error";
+"email.password.notEmpty" = "Email/Password can't be empty";
+"not.empty" = "%@ can't be empty";
+"format.is.invalid" = "%@ format is invalid";
+"less.than.characters" = "%@ can't be less than %d characters";
+"isLike" = "%@ and %@ have to be the same";
 
 // MARK: - Title
 "Device";
 "Edit";
-"Add New Device";
-"Purchase Date";
+"add.new.device" = "Add New Device";
+"purchase.date" = "Purchase Date";
 "Price";
 "Status";
 "User";
 "Category";
 "Code";
-"Delete Device";
-"Device Info";
-"Top Request";
-"Top Device Category";
+"delete.device" = "Delete Device";
+"device.info" = "Device Info";
+"top.request" = "Top Request";
+"top.device.category" = "Top Device Category";
 "Filter";
+"Error";

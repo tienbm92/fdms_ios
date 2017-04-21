@@ -21,6 +21,7 @@ let kDeviceHistoryTitleCell = "DeviceHistoryTitle"
 let kDeviceHistoryCell = "DeviceHistory"
 let kDeviceUsingTitleCell = "DeviceUsingTitle"
 let kDeviceUsingCell = "DeviceUsing"
+let kRequestManageCell = "RequestManageCell"
 
 // MARK: - Constants for API
 
@@ -33,10 +34,18 @@ let kUserGroupURL = "\(kBaseURL)user_group"
 let kDeviceCodeURL = "\(kBaseURL)device_code"
 let kDevicesURL = "\(kBaseURL)devices"
 let kDevicesStatus = "\(kBaseURL)device_status"
-let headers: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
+let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
 let kSignInURL = "\(kBaseURL)sessions"
+let kAssignToURL = "\(kBaseURL)user_assign"
+let kRelativeToURL = "\(kBaseURL)user_group"
+let kTimeOut: TimeInterval = 60
 
 // MARK: - Constants for DataValidator
 
 let kEmailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
 let kMinimumPasswordLength = 6
+
+// MARK: - Constants for Date Time Format
+
+let kDateFormat = "yyyy/MM/dd"
+let kTimeFormat = "HH:mm"

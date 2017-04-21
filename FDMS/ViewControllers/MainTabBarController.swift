@@ -39,7 +39,7 @@ class MainTabBarController: UITabBarController {
     
     func scanButtonTapped(sender: UIButton) {
         guard AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) != nil else {
-            WindowManager.shared.showMessage(message: "Camera Not Found".localized, title: nil, completion: nil)
+            WindowManager.shared.showMessage(message: "camera.not.found".localized, title: nil, completion: nil)
             return
         }
         let scanBarcodeController = BarcodeScannerController()
@@ -60,11 +60,15 @@ extension MainTabBarController: BarcodeScannerCodeDelegate {
             switch result {
             case let .success(device):
                 guard let nav = UIStoryboard.device.instantiateViewController(withIdentifier: "DeviceInfoVC")
-                    as? UINavigationController,
-                let deviceInfoVC = nav.viewControllers[0] as? DeviceInfoContainerVC else {
+                as? UINavigationController,
+                    let deviceInfoVC = nav.viewControllers[0] as? DeviceInfoContainerVC,
+                    //bui minh tien 04/05/2017- begin
+                    let device = device as? Device else {
                     return
                 }
-                deviceInfoVC.device = device
+                deviceInfoVC.setValue(device)
+                //deviceInfoVC.device = device
+                //end
                 controller.dismiss(animated: true, completion: { [weak self] in
                     self?.present(nav, animated: true, completion: nil)
                 })

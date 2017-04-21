@@ -15,74 +15,159 @@ enum optionGetURL {
     case getDeviceCategories
     case getDeviceByCode
     case getDeviceById
+    case getAssignTo
+    case getRelativeTo
 }
 
-enum ListDeviceResult {
-    case success([Device])
+enum CompletionResult {
+    case success(Any)
     case failure(Error)
 }
 
-enum DeviceResult {
-    case success(Device)
-    case failure(Error)
+enum OptionParser {
+    case parserGetListDevice
+    case parserGetDevice
+    case parserGetOtherObject
+    case parserGetRequests
+    case parserUpdateOrAddRequest
 }
 
-class DeviceService {
+class DeviceService: APIService {
     
     static let shared: DeviceService = DeviceService()
-    fileprivate lazy var totalPages: Int = 0
+    fileprivate var totalPages: Int = 0
+    fileprivate var errorInfo: ErrorInfo?
+    fileprivate var optionParser: OptionParser = .parserGetDevice
     
     func getTotalPages() -> Int {
         return totalPages
     }
     
-    func getListDevices(CategoryID categoryID: Int?, StatusID statusID: Int?,
-                        Page page: Page, completion: @escaping (ListDeviceResult) -> Void) {
-        var infoDict = [String: String]()
-        if let categoryID = categoryID, let statusID = statusID {
-            infoDict = ["category_id": "\(categoryID)", "status_id": "\(statusID)",
-                "page": "\(page.page)", "per_page": "\(page.perPage)"]
+    func getMessage() -> String {
+        if let errorInfo = self.errorInfo {
+            return errorInfo.message
         } else {
-            infoDict = ["page": "\(page.page)", "per_page": "\(page.perPage)"]
+            return ""
         }
-        Alamofire.request(kDevicesURL, method: .get, parameters: infoDict,
-                          headers: headers).responseJSON { (response) in
-            guard let jsonInput = response.result.value else {
-                completion(.failure(APIServiceError.errorSystem))
-                return
-            }
-            let (status, data, totalPagesResult) = JsonParser.share.parserRawToArray(JsonInput: jsonInput)
-            if status == APIServiceError.errorNotFound {
-                completion(.failure(APIServiceError.errorNotFound))
-            } else if status == APIServiceError.normal {
-                guard let totalPagesResult = totalPagesResult,
-                    let data = data else {
-                    completion(.failure(APIServiceError.errorParseJSON))
-                    return
-                }
-                self.totalPages = totalPagesResult
-                var listDevices = [Device]()
-                for device in data {
-                    let device = Device(JSON: device)
-                    if let device = device {
-                        listDevices.append(device)
-                    } else {
-                        completion(.failure(APIServiceError.errorParseJSON))
-                    }
-                }
-                if listDevices.isEmpty {
-                    completion(.failure(APIServiceError.errorNotFound))
-                } else {
-                    completion(.success(listDevices))
-                }
-            } else {
-                completion(.failure(APIServiceError.errorSystem))
-            }
-        }
-        
     }
     
-    func getOtherObject(OptionGet option: optionGetURL, completion: @escaping (OtherObjectResult) -> Void) {
+    func getListDevices(CategoryID categoryID: Int?, StatusID statusID: Int?,
+                        Page page: Page, completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserGetListDevice
+        if let urlRequest = self.createParamGetListDevices(categoryID: categoryID, statusID: statusID, page: page) {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { [weak self] (result, error) in
+                if let result = result, let error = error {
+                    self?.errorInfo = error
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        } else {
+            completion(.failure(APIServiceError.errorParseJSON))
+        }
+    }
+    
+    func getOtherObject(OptionGet option: optionGetURL, completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserGetOtherObject
+        if let urlRequest = self.createParamGetOtherObject(OptionGet: option) {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
+                if let result = result, let _ = error {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        } else {
+            completion(.failure(APIServiceError.errorParseJSON))
+        }
+    }
+    
+    func getDevice(optionGet option: optionGetURL, DeviceId deviceId: Int = 0,
+                   PrintedCode printedCode: String = "", completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserGetDevice
+        if let urlRequest = self.createParamGetDevice(option: option, deviceId: deviceId, printedCode: printedCode) {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
+                if let result = result, let _ = error {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        }
+    }
+    
+    private func createParamGetListDevices(categoryID: Int?, statusID: Int?, page: Page) -> URLRequest? {
+        var paramDefault = ["page": "\(page.page)", "per_page": "\(page.perPage)"]
+        var param = [String: String]()
+        if let category = categoryID, let status = statusID {
+            param = ["category_id": "\(category)", "status_id": "\(status)"]
+        }
+        if let category = categoryID {
+            param = ["category_id": "\(category)"]
+        } else if let status = statusID {
+            param = ["status_id": "\(status)"]
+        }
+        paramDefault.merge(with: param)
+        if let paramResult = addRequestParams(dict: paramDefault),
+           let urlRequest = asGetRequest(parameters: paramResult.origin(), url: kDevicesURL) {
+            return urlRequest
+        }
+        return nil
+    }
+    
+    override func onFinish(_ response: Any?, statusCode: Int, error: ErrorInfo?,
+                           completion: NetworkServiceCompletion?) {
+        let dataResult: Any?
+        if let result = response, let error = error {
+            dataResult = self.handleParser(optionParser: self.optionParser, data: result, error: error)
+            self.errorInfo = error
+            super.onFinish(dataResult, error: error, completion: completion)
+        } else {
+            super.onFinish(nil, error: nil, completion: completion)
+        }
+    }
+    
+    private func handleParser(optionParser: OptionParser, data: Any, error: ErrorInfo) -> Any? {
+        switch optionParser {
+        case .parserGetListDevice:
+            return self.parserGetListDevice(data: data, error: error)
+        case .parserGetDevice:
+            return self.parserGetDevice(data: data, error: error)
+        case .parserGetOtherObject:
+            return self.parserGetOtherObject(data: data, error: error)
+        default:
+            return nil
+        }
+    }
+    
+    private func parserGetListDevice(data: Any?, error: ErrorInfo?) -> [Device]? {
+        guard let response = data, let error = error,
+            let result = JsonParser.share.callToParser(option: .parserRawToArray, dataJson: response),
+            let data = result.dataArray, let totalPages = result.totalPages else {
+                return nil
+        }
+        if error.status == StatusCode.notFound.rawValue {
+            return nil
+        }
+        self.totalPages = totalPages
+        var listDevices = [Device]()
+        for device in data {
+            let device = Device(JSON: device)
+            if let device = device {
+                listDevices.append(device)
+            } else {
+                return nil
+            }
+        }
+        if listDevices.isEmpty {
+            return nil
+        } else {
+            return listDevices
+        }
+    }
+    
+    private func createParamGetOtherObject(OptionGet option: optionGetURL) -> URLRequest? {
         var getURL = ""
         switch option {
         case .getDeviceCategories:
@@ -91,76 +176,76 @@ class DeviceService {
             getURL = kDevicesStatus
         case .getRquestStatus:
             getURL = kRequestStatusURL
+        case .getAssignTo:
+            getURL = kAssignToURL
+        case .getRelativeTo:
+            getURL = kRelativeToURL
         default:
-            completion(.failure(APIServiceError.errorParseJSON))
-            return
+            return nil
         }
-        Alamofire.request(getURL, method: .get, headers: headers).responseJSON { (response) in
-            guard let jsonInput = response.result.value else {
-                completion(.failure(APIServiceError.errorSystem))
-                return
-            }
-            let (status, data) = JsonParser.share.parserRawNoTotalPages(JsonInput: jsonInput)
-            if status == APIServiceError.errorNotFound {
-                completion(.failure(APIServiceError.errorNotFound))
-            }
-            guard let dataResult = data else {
-                completion(.failure(APIServiceError.errorParseJSON))
-                return
-            }
-            var listResult = [OtherObject]()
-            for result in dataResult {
-                let result = OtherObject(JSON: result)
-                if let result = result {
-                    listResult.append(result)
-                } else {
-                    completion(.failure(APIServiceError.errorParseJSON))
-                    return
-                }
-            }
-            if listResult.isEmpty {
-                completion(.failure(APIServiceError.errorNotFound))
+        if let urlRequest = asGetRequest(parameters: nil, url: getURL) {
+            return urlRequest
+        }
+        return nil
+    }
+    
+    private func parserGetOtherObject(data: Any?, error: ErrorInfo?) -> [OtherObject]? {
+        guard let response = data, let error = error,
+            let result = JsonParser.share.parserRawNoTotalPages(JsonInput: response),
+            let data = result.dataArray else {
+                return nil
+        }
+        if error.status != 200 {
+            return nil
+        }
+        var listResult = [OtherObject]()
+        for result in data {
+            let result = OtherObject(JSON: result)
+            if let result = result {
+                listResult.append(result)
             } else {
-                completion(.success(listResult))
+                return nil
             }
+        }
+        if listResult.isEmpty {
+            return nil
+        } else {
+            return listResult
         }
     }
     
-    func getDevice(optionGet option: optionGetURL, DeviceId deviceId: Int = 0,
-                   PrintedCode printedCode: String = "", completion: @escaping (DeviceResult) -> Void) {
-        var infoDict = [String: String]()
+    private func createParamGetDevice(option: optionGetURL, deviceId: Int, printedCode: String) -> URLRequest? {
+        var paramInfo = [String: String]()
         switch option {
         case .getDeviceByCode:
-            infoDict = ["printed_code": "\(printedCode)"]
+            paramInfo = ["printed_code": "\(printedCode)"]
         case .getDeviceById:
-            infoDict = ["device_id": "\(deviceId)"]
+            paramInfo = ["device_id": "\(deviceId)"]
         default:
-            completion(.failure(APIServiceError.errorParseJSON))
-            return
+            return nil
         }
-        Alamofire.request(kDeviceCodeURL, method: .get, parameters: infoDict,
-                          headers: headers).responseJSON { (response) in
-            guard let jsonInput = response.result.value else {
-                completion(.failure(APIServiceError.errorSystem))
-                return
-            }
-            let (status, data) = JsonParser.share.parserRawToObject(JsonInput: jsonInput)
-            if status == APIServiceError.errorNotFound {
-                completion(.failure(APIServiceError.errorNotFound))
-            } else if status == APIServiceError.normal {
-                guard let data = data else {
-                    completion(.failure(APIServiceError.errorParseJSON))
-                    return
-                }
-                let deviceResult = Device(JSON: data)
-                if let deviceResult = deviceResult {
-                    completion(.success(deviceResult))
-                } else {
-                    completion(.failure(APIServiceError.errorNotFound))
-                }
-            } else {
-                completion(.failure(APIServiceError.errorSystem))
-            }
+        if let param = addRequestParams(dict: paramInfo),
+           let urlRequest = asGetRequest(parameters: param.origin(), url: kDeviceCodeURL) {
+            return urlRequest
+        } else {
+            return nil
+        }
+    }
+    
+    private func parserGetDevice(data: Any?, error: ErrorInfo?) -> Device? {
+        guard let response = data, let error = error,
+            let result = JsonParser.share.parserRawToObject(JsonInput: response),
+            let data = result.dataObject else {
+                return nil
+        }
+        if error.status != 200 {
+            return nil
+        }
+        let deviceResult = Device(JSON: data)
+        if let deviceResult = deviceResult {
+            return deviceResult
+        } else {
+            return nil
         }
     }
     

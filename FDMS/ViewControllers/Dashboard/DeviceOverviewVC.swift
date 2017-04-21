@@ -28,7 +28,7 @@ class DeviceOverviewVC: UITableViewController {
             cells.append(pieChartCell)
             return cells
         }
-        let tableSection = SectionInfo(titleForHeader: "Top Device Category".localized, heightForHeader: 36,
+        let tableSection = SectionInfo(titleForHeader: "top.device.category".localized, heightForHeader: 36,
                                        heightForFooter: 36) { () -> ([CellInfo]) in
             let titleCell = CellInfo(indentifier: kTopDeviceTitleCell, heightForRow: 50)
             let contentCell = CellInfo(indentifier: kTopDeviceCell, heightForRow: 44)

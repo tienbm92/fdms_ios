@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct Device: Mappable {
+class Device: Mappable {
     
     var deviceId: Int?
     var deviceCode: String?
@@ -28,11 +28,10 @@ struct Device: Mappable {
     
     init() {
     }
-    
-    init?(map: Map) {
+    required init?(map: Map) {
     }
     
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         deviceId <- map["id"]
         deviceCode <- map["device_code"]
         productionName <- map["production_name"]
@@ -40,7 +39,7 @@ struct Device: Mappable {
         deviceCategoryId <- map["device_category_id"]
         picture <- map["picture"]
         originalPrice <- map["original_price"]
-        boughtDate <- map["bought_date"]
+        boughtDate <- (map["bought_date"], DateTransform())
         printedCode <- map["printed_code"]
         isBarcode <- map["is_barcode"]
         deviceStatusName <- map["device_status_name"]
