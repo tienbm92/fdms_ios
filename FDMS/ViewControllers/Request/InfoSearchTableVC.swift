@@ -24,11 +24,11 @@ class InfoSearchTableVC: UITableViewController {
     fileprivate var filter: [AnyObject] = [AnyObject]()
     fileprivate weak var delegate: InfoSearchVCDelegate?
     fileprivate lazy var searchResultUser: [User] = [User]()
-    fileprivate lazy var searchResultDevices: [CategoriesDevices] = [CategoriesDevices]()
-    fileprivate lazy var searchResultStatus: [RequestStatus] = [RequestStatus]()
+    fileprivate lazy var searchResultDevices: [ManagerValue] = [ManagerValue]()
+    fileprivate lazy var searchResultStatus: [ManagerValue] = [ManagerValue]()
     fileprivate lazy var filterUser: [User] = [User]()
-    fileprivate lazy var filterDevices: [CategoriesDevices] = [CategoriesDevices]()
-    fileprivate lazy var filterStatus: [RequestStatus] = [RequestStatus]()
+    fileprivate lazy var filterDevices: [ManagerValue] = [ManagerValue]()
+    fileprivate lazy var filterStatus: [ManagerValue] = [ManagerValue]()
     fileprivate var optionResult: OptionFilter = .user
     fileprivate let searchController: UISearchController = UISearchController(searchResultsController: nil)
     
@@ -40,7 +40,6 @@ class InfoSearchTableVC: UITableViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         self.tableView.tableHeaderView = searchController.searchBar
-        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,12 +99,12 @@ class InfoSearchTableVC: UITableViewController {
                 self.filterUser = filter
             }
         } else if self.title == "Device Category" {
-            if let filter = self.filter as? [CategoriesDevices] {
+            if let filter = self.filter as? [ManagerValue] {
                 self.filterDevices = filter
                 self.optionResult = .categoriesDevices
             }
         } else if self.title == "Status" {
-            if let filter = self.filter as? [RequestStatus] {
+            if let filter = self.filter as? [ManagerValue] {
                 self.filterStatus = filter
                 self.optionResult = .requestStatus
             }

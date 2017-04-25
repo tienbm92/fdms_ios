@@ -9,13 +9,15 @@
 import Foundation
 
 class User {
-    var uid: Int = 0
+    var uid: Int?
     var name: String = ""
     var address: String = ""
-    var email: String = ""
-    var password: String = ""
+    var email: String?
+    var password: String?
     var deparmentId: Int = 0
     var avatar: String = ""
+    var token: String?
+    var rememberMe: Bool = false
     
     init() {
     }
