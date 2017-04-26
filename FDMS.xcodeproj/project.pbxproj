@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0817514E1EA8B45800779B40 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */; };
 		0817514F1EA8B45C00779B40 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BFAB11EA6224300AA455C /* WindowManager.swift */; };
-		081751501EA8B46F00779B40 /* DeviceEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */; };
 		081751511EA8B47400779B40 /* DeviceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */; };
 		081CF6451EAF35F200A1186D /* CellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CF63E1EAF35F200A1186D /* CellInfo.swift */; };
 		081CF6461EAF35F200A1186D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CF63F1EAF35F200A1186D /* Device.swift */; };
@@ -22,7 +21,6 @@
 		08518A431EA495D100AF9066 /* EditRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08518A421EA495D100AF9066 /* EditRequestTableVC.swift */; };
 		086037561EA9ACE700DAD7C1 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086037551EA9ACE700DAD7C1 /* Dictionary+Extension.swift */; };
 		0860375C1EA9F74900DAD7C1 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860375B1EA9F74900DAD7C1 /* DataStore.swift */; };
-		0863A3281EA0A12F00039AAF /* InfoSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */; };
 		0863A32E1EA0D0A900039AAF /* InfoDeviceTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */; };
 		0863A3301EA0D25200039AAF /* NewRequestTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */; };
 		086A11001E9DE36E0007CA6A /* ManageRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */; };
@@ -50,9 +48,15 @@
 		11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D0D1E9DC94C00DE7E22 /* DeviceUsingVC.swift */; };
 		11577D121E9DD8E600DE7E22 /* Device.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11577D111E9DD8E600DE7E22 /* Device.storyboard */; };
 		11577D161E9DE8EF00DE7E22 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D151E9DE8EF00DE7E22 /* String+Extension.swift */; };
+		553ED85F1EA9EB9500523846 /* DeviceCustomizationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D031E9DC8E000DE7E22 /* DeviceCustomizationVC.swift */; };
+		554145A51EAF29F2000B3130 /* DeviceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554145A41EAF29F2000B3130 /* DeviceListCell.swift */; };
+		554145A71EAF52B7000B3130 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554145A61EAF52B7000B3130 /* Date+Extension.swift */; };
 		554748631E8E39700083A687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554748621E8E39700083A687 /* Main.storyboard */; };
 		554748691E8E434A0083A687 /* LoginTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554748681E8E434A0083A687 /* LoginTableVC.swift */; };
 		5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5547486A1E8E4BB80083A687 /* UIView+Extension.swift */; };
+		554DFEC61EB2DFB000FAEAF2 /* InfoSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DFEC51EB2DFB000FAEAF2 /* InfoSearchTableVC.swift */; };
+		554DFEC81EB2E06800FAEAF2 /* FilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DFEC71EB2E06800FAEAF2 /* FilterInfo.swift */; };
+		554DFEEE1EB3216D00FAEAF2 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DFEED1EB3216D00FAEAF2 /* SearchCell.swift */; };
 		555E44BB1E91FDC900153C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */; };
 		555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */; };
 		555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */; };
@@ -61,6 +65,7 @@
 		5570CE521EA45ADC00C7C298 /* DeviceManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11577D071E9DC8E000DE7E22 /* DeviceManagementVC.swift */; };
 		5570CE531EA45D4400C7C298 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11405D9C1E8CEF0D00E32F95 /* Info.plist */; };
 		5570CE631EA4608100C7C298 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5570CE5F1EA4603B00C7C298 /* Localizable.strings */; };
+		55B87BF01EB08A420047EB6E /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B87BEF1EB08A420047EB6E /* UIImageView+Extension.swift */; };
 		55E06AC11EA5B37E009AAC60 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E06AC01EA5B37E009AAC60 /* DashboardVC.swift */; };
 		55E06AC31EA5B403009AAC60 /* RequestOverviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E06AC21EA5B403009AAC60 /* RequestOverviewVC.swift */; };
 		55E06AC51EA5B41A009AAC60 /* DeviceOverviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E06AC41EA5B41A009AAC60 /* DeviceOverviewVC.swift */; };
@@ -82,7 +87,6 @@
 		086037551EA9ACE700DAD7C1 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		0860375B1EA9F74900DAD7C1 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		0863A3251EA062CC00039AAF /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSearchTableVC.swift; sourceTree = "<group>"; };
 		0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceTableVC.swift; sourceTree = "<group>"; };
 		0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestTableVC.swift; sourceTree = "<group>"; };
 		086A10FF1E9DE36E0007CA6A /* ManageRequest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageRequest.storyboard; sourceTree = "<group>"; };
@@ -108,7 +112,7 @@
 		11405D901E8CEF0D00E32F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11405D971E8CEF0D00E32F95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11405D9C1E8CEF0D00E32F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEditVC.swift; sourceTree = "<group>"; };
+		11577D031E9DC8E000DE7E22 /* DeviceCustomizationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCustomizationVC.swift; sourceTree = "<group>"; };
 		11577D041E9DC8E000DE7E22 /* DeviceHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHistoryVC.swift; sourceTree = "<group>"; };
 		11577D051E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoContainerVC.swift; sourceTree = "<group>"; };
 		11577D071E9DC8E000DE7E22 /* DeviceManagementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManagementVC.swift; sourceTree = "<group>"; };
@@ -117,9 +121,14 @@
 		11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoVC.swift; sourceTree = "<group>"; };
 		11577D151E9DE8EF00DE7E22 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1D13EFA9067D9DEFF37DC5D2 /* Pods-FDMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMS.release.xcconfig"; path = "Pods/Target Support Files/Pods-FDMS/Pods-FDMS.release.xcconfig"; sourceTree = "<group>"; };
+		554145A41EAF29F2000B3130 /* DeviceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListCell.swift; sourceTree = "<group>"; };
+		554145A61EAF52B7000B3130 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		554748621E8E39700083A687 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		554748681E8E434A0083A687 /* LoginTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableVC.swift; sourceTree = "<group>"; };
 		5547486A1E8E4BB80083A687 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		554DFEC51EB2DFB000FAEAF2 /* InfoSearchTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSearchTableVC.swift; sourceTree = "<group>"; };
+		554DFEC71EB2E06800FAEAF2 /* FilterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterInfo.swift; sourceTree = "<group>"; };
+		554DFEED1EB3216D00FAEAF2 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		555E44BA1E91FDC900153C61 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
@@ -127,6 +136,7 @@
 		555E44C51E92041500153C61 /* MiddleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleButton.swift; sourceTree = "<group>"; };
 		5570CE601EA4603B00C7C298 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5570CE621EA4604600C7C298 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Localizable/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B87BEF1EB08A420047EB6E /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		55E06AC01EA5B37E009AAC60 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		55E06AC21EA5B403009AAC60 /* RequestOverviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOverviewVC.swift; sourceTree = "<group>"; };
 		55E06AC41EA5B41A009AAC60 /* DeviceOverviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOverviewVC.swift; sourceTree = "<group>"; };
@@ -159,6 +169,7 @@
 				081CF6431EAF35F200A1186D /* SectionInfo.swift */,
 				081CF6441EAF35F200A1186D /* User.swift */,
 				086B26C51EB0A5F100B76E63 /* PhotoPath.swift */,
+				554DFEC71EB2E06800FAEAF2 /* FilterInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,10 +177,9 @@
 		086AEE071E9F294D00D69F5E /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */,
 				086AEE171E9F2AFD00D69F5E /* ManageRequestVC.swift */,
+				086AEE0B1E9F294D00D69F5E /* RequestDetailVC.swift */,
 				086AEE1F1E9F8BB100D69F5E /* AddRequestDeviceVC.swift */,
-				0863A3271EA0A12F00039AAF /* InfoSearchTableVC.swift */,
 				0863A32D1EA0D0A900039AAF /* InfoDeviceTableVC.swift */,
 				0863A32F1EA0D25200039AAF /* NewRequestTableVC.swift */,
 				08518A421EA495D100AF9066 /* EditRequestTableVC.swift */,
@@ -251,12 +261,12 @@
 		11577D021E9DC8BA00DE7E22 /* Device */ = {
 			isa = PBXGroup;
 			children = (
-				11577D031E9DC8E000DE7E22 /* DeviceEditVC.swift */,
-				11577D041E9DC8E000DE7E22 /* DeviceHistoryVC.swift */,
-				11577D051E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift */,
 				11577D071E9DC8E000DE7E22 /* DeviceManagementVC.swift */,
-				11577D0D1E9DC94C00DE7E22 /* DeviceUsingVC.swift */,
+				11577D051E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift */,
+				11577D031E9DC8E000DE7E22 /* DeviceCustomizationVC.swift */,
 				11577D131E9DDE8600DE7E22 /* DeviceInfoVC.swift */,
+				11577D041E9DC8E000DE7E22 /* DeviceHistoryVC.swift */,
+				11577D0D1E9DC94C00DE7E22 /* DeviceUsingVC.swift */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -278,6 +288,8 @@
 				5547486A1E8E4BB80083A687 /* UIView+Extension.swift */,
 				555E44C01E91FFD700153C61 /* UIStoryboard+Extension.swift */,
 				086037551EA9ACE700DAD7C1 /* Dictionary+Extension.swift */,
+				554145A61EAF52B7000B3130 /* Date+Extension.swift */,
+				55B87BEF1EB08A420047EB6E /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -299,6 +311,7 @@
 				555E44BC1E91FE8E00153C61 /* MainTabBarController.swift */,
 				554748681E8E434A0083A687 /* LoginTableVC.swift */,
 				082C3BC71E976384008A4B81 /* FogetPasswordTableVC.swift */,
+				554DFEC51EB2DFB000FAEAF2 /* InfoSearchTableVC.swift */,
 				55E06ABF1EA5B350009AAC60 /* Dashboard */,
 				11577D021E9DC8BA00DE7E22 /* Device */,
 				086AEE071E9F294D00D69F5E /* Request */,
@@ -314,6 +327,8 @@
 				555E44C51E92041500153C61 /* MiddleButton.swift */,
 				0891D77B1E9B466000400F3C /* ButtonCell.swift */,
 				0891D77C1E9B466000400F3C /* ButtonCell.xib */,
+				554145A41EAF29F2000B3130 /* DeviceListCell.swift */,
+				554DFEED1EB3216D00FAEAF2 /* SearchCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -456,7 +471,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		82B99877F3FC605B14AD5046 /* [CP] Embed Pods Frameworks */ = {
@@ -482,23 +497,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				081CF6461EAF35F200A1186D /* Device.swift in Sources */,
+				553ED85F1EA9EB9500523846 /* DeviceCustomizationVC.swift in Sources */,
 				081751511EA8B47400779B40 /* DeviceInfoVC.swift in Sources */,
 				08A122E61EAE0C1E00022738 /* DeviceService.swift in Sources */,
-				081751501EA8B46F00779B40 /* DeviceEditVC.swift in Sources */,
 				0817514F1EA8B45C00779B40 /* WindowManager.swift in Sources */,
 				0817514E1EA8B45800779B40 /* UIViewController+Extension.swift in Sources */,
 				5570CE521EA45ADC00C7C298 /* DeviceManagementVC.swift in Sources */,
 				55E06AC11EA5B37E009AAC60 /* DashboardVC.swift in Sources */,
 				555E44C61E92041500153C61 /* MiddleButton.swift in Sources */,
+				554DFEC61EB2DFB000FAEAF2 /* InfoSearchTableVC.swift in Sources */,
 				0887E4C91EA70C180072A5DE /* DataValidator.swift in Sources */,
 				11577D0E1E9DC94C00DE7E22 /* DeviceUsingVC.swift in Sources */,
 				086B26C01EB0705600B76E63 /* UserService.swift in Sources */,
-				0863A3281EA0A12F00039AAF /* InfoSearchTableVC.swift in Sources */,
+				554DFEEE1EB3216D00FAEAF2 /* SearchCell.swift in Sources */,
 				086AEE0F1E9F294D00D69F5E /* RequestDetailVC.swift in Sources */,
 				081CF64D1EAF368600A1186D /* OtherObject.swift in Sources */,
 				55E06AC31EA5B403009AAC60 /* RequestOverviewVC.swift in Sources */,
 				081CF6451EAF35F200A1186D /* CellInfo.swift in Sources */,
 				11577D0A1E9DC8E000DE7E22 /* DeviceInfoContainerVC.swift in Sources */,
+				55B87BF01EB08A420047EB6E /* UIImageView+Extension.swift in Sources */,
 				11405D911E8CEF0D00E32F95 /* AppDelegate.swift in Sources */,
 				555E44BD1E91FE8E00153C61 /* MainTabBarController.swift in Sources */,
 				5547486B1E8E4BB80083A687 /* UIView+Extension.swift in Sources */,
@@ -514,17 +531,20 @@
 				55F1D61B1EA603A7001C7B4D /* PieChartCell.swift in Sources */,
 				0860375C1EA9F74900DAD7C1 /* DataStore.swift in Sources */,
 				0863A32E1EA0D0A900039AAF /* InfoDeviceTableVC.swift in Sources */,
+				554145A71EAF52B7000B3130 /* Date+Extension.swift in Sources */,
 				086AEE121E9F298E00D69F5E /* DeviceRequestCell.swift in Sources */,
 				081CF64A1EAF35F200A1186D /* SectionInfo.swift in Sources */,
 				081CF64B1EAF35F200A1186D /* User.swift in Sources */,
 				0863A3301EA0D25200039AAF /* NewRequestTableVC.swift in Sources */,
 				08518A431EA495D100AF9066 /* EditRequestTableVC.swift in Sources */,
 				082C3BC81E976384008A4B81 /* FogetPasswordTableVC.swift in Sources */,
+				554DFEC81EB2E06800FAEAF2 /* FilterInfo.swift in Sources */,
 				086AEE201E9F8BB100D69F5E /* AddRequestDeviceVC.swift in Sources */,
 				081CF6481EAF35F200A1186D /* Page.swift in Sources */,
 				0891D77D1E9B466000400F3C /* ButtonCell.swift in Sources */,
 				555E44C11E91FFD700153C61 /* UIStoryboard+Extension.swift in Sources */,
 				086AEE181E9F2AFD00D69F5E /* ManageRequestVC.swift in Sources */,
+				554145A51EAF29F2000B3130 /* DeviceListCell.swift in Sources */,
 				086AEE1B1E9F5A4D00D69F5E /* InfoDeviceRequestCell.swift in Sources */,
 				088BFAB21EA6224300AA455C /* Constants.swift in Sources */,
 				0874A7421EAEEFF800D33911 /* JsonParser.swift in Sources */,

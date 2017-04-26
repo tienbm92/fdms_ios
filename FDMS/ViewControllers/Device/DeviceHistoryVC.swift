@@ -8,10 +8,22 @@
 
 import UIKit
 
-class DeviceHistoryVC: UIViewController {
+class DeviceHistoryVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = indexPath.row == 0 ? kDeviceHistoryTitleCell : kDeviceHistoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        return cell
+    }
+    
 }

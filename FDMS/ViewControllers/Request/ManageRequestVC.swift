@@ -26,7 +26,7 @@ class ManageRequestVC: UIViewController {
             let listUserRelative = self.getListUserRelative() else {
             return
         }
-        self.pushSearchViewController(title: textButton, listUserRelative: listUserRelative, otherObject: nil)
+//        self.pushSearchViewController(title: textButton, listUserRelative: listUserRelative, otherObject: nil)
     }
     
     @IBAction func requestStatusButton(_ sender: UIButton) {
@@ -34,22 +34,22 @@ class ManageRequestVC: UIViewController {
             let listStatus = self.getListStatus() else {
             return
         }
-        self.pushSearchViewController(title: textButton, listUserRelative: nil, otherObject: listStatus)
+//        self.pushSearchViewController(title: textButton, listUserRelative: nil, otherObject: listStatus)
     }
     
-    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, otherObject: [OtherObject]?) {
-        guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
-            String(describing: InfoSearchTableVC.self)) as? InfoSearchTableVC else {
-            return
-        }
-        if let listUserRelative = listUserRelative {
-            searchViewController.setProperty(input: listUserRelative)
-        } else if let otherObject = otherObject {
-            searchViewController.setProperty(input: otherObject)
-        }
-        searchViewController.title = textTitle
-        self.navigationController?.pushViewController(searchViewController, animated: true)
-    }
+//    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, otherObject: [OtherObject]?) {
+//        guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
+//            String(describing: InfoSearchTableVC.self)) as? InfoSearchTableVC else {
+//            return
+//        }
+//        if let listUserRelative = listUserRelative {
+//            searchViewController.setProperty(input: listUserRelative)
+//        } else if let otherObject = otherObject {
+//            searchViewController.setProperty(input: otherObject)
+//        }
+//        searchViewController.title = textTitle
+//        self.navigationController?.pushViewController(searchViewController, animated: true)
+//    }
     
     fileprivate func getListRequest(userID: Int, statusId: Int?, relativeId: Int?, perPage: Int = 10, page: Int = 1) {
         let page = Page(page: page, perPage: perPage)
@@ -75,7 +75,7 @@ class ManageRequestVC: UIViewController {
     
     fileprivate func getListStatus() -> [OtherObject]? {
         var listStatus = [OtherObject]()
-        DeviceService.share.getOtherObject(OptionGet: .getRquestStatus) { (result) in
+        DeviceService.shared.getOtherObject(OptionGet: .getRquestStatus) { (result) in
             switch result {
             case let .success(listStatusResult):
                 listStatus = listStatusResult
@@ -107,7 +107,7 @@ extension ManageRequestVC: UITableViewDataSource {
     
 }
 
-extension ManageRequestVC: InfoSearchVCDelegate {
+extension ManageRequestVC: InfoSearchDelegate {
     
     func searchViewController(_ searchViewController: InfoSearchTableVC, didCloseWith filter: AnyObject?,
                               resultOption option: OptionFilter) {

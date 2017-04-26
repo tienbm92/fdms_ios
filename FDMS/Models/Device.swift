@@ -14,6 +14,8 @@ struct Device: Mappable {
     var deviceId: Int?
     var deviceCode: String?
     var productionName: String = ""
+    var modelNumber: String = ""
+    var serialNumber: String = ""
     var deviceStatusId: Int?
     var deviceCategoryId: Int?
     var picture: PhotoPath?
@@ -23,6 +25,9 @@ struct Device: Mappable {
     var isBarcode: Bool = false
     var deviceStatusName: String = ""
     var deviceCategoryName: String = ""
+    
+    init() {
+    }
     
     init?(map: Map) {
     }
@@ -40,6 +45,10 @@ struct Device: Mappable {
         isBarcode <- map["is_barcode"]
         deviceStatusName <- map["device_status_name"]
         deviceCategoryName <- map["device_category_name"]
+    }
+    
+    func getImageURL() -> URL? {
+        return URL(string: "\(kFramgiaURL)\(picture?.photoURL ?? "")")
     }
     
 }

@@ -10,12 +10,83 @@ import UIKit
 
 class DeviceManagementVC: UIViewController {
     
-    @IBOutlet fileprivate weak var filterView: UIView!
-    @IBOutlet fileprivate weak var filterTableView: UITableView!
-    @IBOutlet fileprivate weak var deviceTableView: UITableView!
+    @IBOutlet private weak var deviceListTableView: UITableView!
+    @IBOutlet private weak var addButton: UIBarButtonItem!
+    fileprivate var devices: [Device] = [Device]()
+    var selectedDevice: Device?
+    lazy var dataToPassing: [FilterInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchDeviceList()
+    }
+    
+    private func fetchDeviceList() {
+        let page: Page = Page(page: 1, perPage: 10)
+        WindowManager.shared.showProgressView()
+        DeviceService.shared.getListDevices(CategoryID: nil, StatusID: nil, Page: page) { [weak self] (result) in
+            WindowManager.shared.hideProgressView()
+            switch result {
+            case let .success(devices):
+                self?.devices = devices
+                self?.deviceListTableView.reloadData()
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    private func moveToSearchScreen(optionGet: optionGetURL, with segueIdentifier: String) {
+        DeviceService.shared.getOtherObject(OptionGet: optionGet, completion: { [weak self] (result) in
+            switch result {
+            case let .success(data):
+                var inputData: [FilterInfo] = []
+                for i in 0..<data.count {
+                    let filterElement = FilterInfo()
+                    filterElement.objectId = data[i].valueId
+                    filterElement.name = data[i].name
+                    inputData.append(filterElement)
+                }
+                self?.dataToPassing = inputData
+                self?.performSegue(withIdentifier: segueIdentifier, sender: nil)
+            case let .failure(error):
+                print(error)
+            }
+        })
+    }
+    
+    @IBAction func onStatusButtonPressed(_ sender: UIButton) {
+        self.moveToSearchScreen(optionGet: .getDeviceStatus, with: "DeviceStatusFilter")
+    }
+    
+    @IBAction func onCategoryButtonPressed(_ sender: UIButton) {
+        self.moveToSearchScreen(optionGet: .getDeviceCategories, with: "CategoryFilter")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DeviceListToDetail" {
+            guard let destination = segue.destination as? DeviceInfoContainerVC else {
+                return
+            }
+            destination.device = selectedDevice ?? Device()
+        } else if segue.identifier == "AddDevice" {
+            guard let destination = segue.destination as? DeviceCustomizationVC else {
+                return
+            }
+            destination.type = .add
+        } else if segue.identifier == "CategoryFilter" {
+            guard let destination = segue.destination as? InfoSearchTableVC else {
+                return
+            }
+            destination.title = "Categories"
+            destination.inputData = dataToPassing
+        } else if segue.identifier == "DeviceStatusFilter" {
+            guard let destination = segue.destination as? InfoSearchTableVC else {
+                return
+            }
+            destination.title = "Device Status"
+            destination.inputData = dataToPassing
+        }
     }
     
 }
@@ -23,31 +94,29 @@ class DeviceManagementVC: UIViewController {
 extension DeviceManagementVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // For Prototype Only
-        return 10
+        return devices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // For Prototype Only
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Device",
+                                                       for: indexPath) as? DeviceListCell else {
+                                                        return UITableViewCell()
+        }
+        cell.device = devices[indexPath.row]
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
-                   forRowAt indexPath: IndexPath) {
     }
     
 }
 
 extension DeviceManagementVC: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "DeviceListToDetail", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedDevice = devices[indexPath.row]
+        return indexPath
     }
     
 }

@@ -14,4 +14,12 @@ extension UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
     }
     
+    static var manageRequest: UIStoryboard {
+        return UIStoryboard(name: "ManageRequest", bundle: nil)
+    }
+    
+    static var device: UIStoryboard {
+        return UIStoryboard(name: "Device", bundle: nil)
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellInfo: NSObject {
+class CellInfo {
     
     var indentifier: String?
     var heightForRow: CGFloat?

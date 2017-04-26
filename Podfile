@@ -9,4 +9,5 @@ target 'FDMS' do
   pod 'Charts'
   pod 'Alamofire'
   pod 'ObjectMapper'
+  pod 'SDWebImage'
 end
