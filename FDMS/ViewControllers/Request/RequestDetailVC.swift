@@ -10,11 +10,10 @@ import UIKit
 
 class RequestDetailVC: UIViewController {
     
-    let titleRequestArray: [String] = ["Description", "Title", "Request status",
+    fileprivate let titleRequestArray: [String] = ["Description", "Title", "Request status",
                                        "Request for", "Create by", "Updated by"]
-    let detailRequestArray: [String] = ["tienbmDevIOS-test2", "tienbmDevIOS",
-                                        "approved", "Bui Minh Tien", "Bui Minh Tien", "Chu Anh Tuan"]
-    let titleButtonArray: [String] = ["Accept", "Cancel", "Edit"]
+    fileprivate var request: Request?
+    fileprivate let titleButtonArray: [String] = ["Accept", "Cancel", "Edit"]
     @IBOutlet weak fileprivate var listRequestTableView: UITableView!
     
     override func viewDidLoad() {
@@ -65,7 +64,7 @@ extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let infoRequestCell = tableView.dequeueReusableCell(withIdentifier: "InfoRequestCell", for: indexPath)
             infoRequestCell.textLabel?.text = self.titleRequestArray[indexPath.row]
-            infoRequestCell.detailTextLabel?.text = self.detailRequestArray[indexPath.row]
+            infoRequestCell.detailTextLabel?.text = self.titleRequestArray[indexPath.row]
             cellReturn = infoRequestCell
         } else if indexPath.section == 1 {
             guard let infoDeviceCell = tableView.dequeueReusableCell(withIdentifier: "DeviceRequestCell",

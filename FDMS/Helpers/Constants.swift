@@ -28,3 +28,9 @@ let kDeviceCodeURL = "\(kBaseURL)device_code"
 let kDevicesURL = "\(kBaseURL)devices"
 let kDevicesStatus = "\(kBaseURL)device_status"
 let headers: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
+let kSignInURL = "\(kBaseURL)sessions"
+
+// MARK: - Constants for DataValidator
+
+let kEmailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+let kMinimumPasswordLength = 6
