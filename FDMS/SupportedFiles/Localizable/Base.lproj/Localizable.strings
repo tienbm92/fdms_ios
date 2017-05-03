@@ -26,6 +26,7 @@
 // MARK: - Title
 "Device";
 "Edit";
+"Add New Device";
 "Purchase Date";
 "Price";
 "Status";
@@ -36,3 +37,4 @@
 "Device Info";
 "Top Request";
 "Top Device Category";
+"Filter";

@@ -12,7 +12,8 @@ import MBProgressHUD
 class WindowManager: NSObject {
     
     static let shared: WindowManager = WindowManager()
-    
+    private var window: UIWindow? = UIApplication.shared.keyWindow
+
     // MARK: - ProgressView properties
     
     lazy var progressWindow: UIWindow = {
@@ -38,7 +39,6 @@ class WindowManager: NSObject {
         awindow.rootViewController = UIViewController()
         return awindow
     }()
-    private var window: UIWindow? = UIApplication.shared.keyWindow
     
     func getCurrentWindowLevel() -> CGFloat {
         if let window = self.window {

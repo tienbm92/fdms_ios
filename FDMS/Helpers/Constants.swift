@@ -9,6 +9,7 @@
 import Alamofire
 import Foundation
 
+// MARK: - Constants for Cell Id
 let buttonCellId = "ButtonCell"
 let infoDeviceRequestCell = "InfoDeviceRequestCell"
 let kPieChartCell = "PieChartCell"
@@ -16,9 +17,14 @@ let kTopRequestTitleCell = "TopRequestTitleCell"
 let kTopRequestCell = "TopRequestCell"
 let kTopDeviceTitleCell = "TopDeviceTitleCell"
 let kTopDeviceCell = "TopDeviceCell"
+let kDeviceHistoryTitleCell = "DeviceHistoryTitle"
+let kDeviceHistoryCell = "DeviceHistory"
+let kDeviceUsingTitleCell = "DeviceUsingTitle"
+let kDeviceUsingCell = "DeviceUsing"
 
 // MARK: - Constants for API
 
+let kFramgiaURL = "http://stg-dms.framgia.vn"
 let kBaseURL = "http://stg-dms.framgia.vn/api/v1/"
 let kRequestsURL = "\(kBaseURL)requests"
 let kDeviceCategoriesURL = "\(kBaseURL)device_categories"

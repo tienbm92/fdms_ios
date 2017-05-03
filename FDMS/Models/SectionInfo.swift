@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionInfo: NSObject {
+class SectionInfo {
     
     var titleForHeader: String?
     var heightForHeader: CGFloat?

@@ -56,6 +56,22 @@ extension MainTabBarController: BarcodeScannerCodeDelegate {
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         print(code)
         print(type)
+        DeviceService.shared.getDevice(optionGet: .getDeviceByCode, PrintedCode: code) { [weak self] (result) in
+            switch result {
+            case let .success(device):
+                guard let nav = UIStoryboard.device.instantiateViewController(withIdentifier: "DeviceInfoVC")
+                    as? UINavigationController,
+                let deviceInfoVC = nav.viewControllers[0] as? DeviceInfoContainerVC else {
+                    return
+                }
+                deviceInfoVC.device = device
+                controller.dismiss(animated: true, completion: { [weak self] in
+                    self?.present(nav, animated: true, completion: nil)
+                })
+            case let .failure(error):
+                print(error)
+            }
+        }
         let delayTime = DispatchTime.now() + Double(Int64(6 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             controller.resetWithError()

@@ -29,7 +29,7 @@ enum DeviceResult {
 
 class DeviceService {
     
-    static let share: DeviceService = DeviceService()
+    static let shared: DeviceService = DeviceService()
     fileprivate lazy var totalPages: Int = 0
     
     func getTotalPages() -> Int {

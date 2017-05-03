@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 class OtherObject: Mappable {
+    
     var valueId: Int = 0
     var name: String = ""
     
@@ -20,5 +21,5 @@ class OtherObject: Mappable {
         valueId <- map["id"]
         name <- map["name"]
     }
-    
+
 }

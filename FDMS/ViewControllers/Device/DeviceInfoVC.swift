@@ -6,25 +6,46 @@
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 class DeviceInfoVC: UITableViewController {
 
+    @IBOutlet private weak var deviceImage: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var deviceCodeLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var createdByLabel: UILabel!
+    @IBOutlet private weak var modelNumberLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    var device: Device = Device()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupInfo()
     }
     
-    // MARK: - Table View Delegate
+    func setupInfo() {
+        nameLabel.text = device.productionName
+        deviceCodeLabel.text = device.deviceCode
+        categoryLabel.text = device.deviceCategoryName
+        statusLabel.text = device.deviceStatusName
+        modelNumberLabel.text = device.modelNumber
+        priceLabel.text = String(device.originalPrice)
+        dateLabel.text = device.boughtDate?.toDateString()
+        deviceImage.sd_setImage(with: device.getImageURL(), placeholderImage: #imageLiteral(resourceName: "img_placeholder"))
+    }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditDevice" {
+            guard let destination = segue.destination as? DeviceCustomizationVC else {
+                return
+            }
+            destination.type = .edit
+            destination.device = self.device
+        } 
     }
     
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 || indexPath.section == 2 {
-            return false
-        }
-        return true
-    }
-
 }
