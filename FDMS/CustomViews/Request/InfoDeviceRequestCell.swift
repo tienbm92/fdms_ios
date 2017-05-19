@@ -14,9 +14,15 @@ class InfoDeviceRequestCell: UITableViewCell {
     @IBOutlet weak private var descriptionLabel: UILabel!
     @IBOutlet weak private var deviceCategoryLabel: UILabel!
     @IBOutlet weak private var numberLabel: UILabel!
+    @IBOutlet weak private var lineView: UIView!
     
-    func setValue(deviceValue: DevicesForRequest, countDevice: Int) {
+    func setValue(deviceValue: DevicesForRequest, countDevice: Int, lineViewHidden: Bool) {
         valueForCell(deviceValue: deviceValue, countDevice: countDevice)
+        if lineViewHidden {
+            self.lineView.isHidden = true
+        } else {
+            self.lineView.isHidden = false
+        }
     }
     
     private func valueForCell(deviceValue: DevicesForRequest?, countDevice: Int?) {

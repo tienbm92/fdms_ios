@@ -40,7 +40,7 @@ class DeviceManagementVC: UIViewController {
         }
     }
     
-    private func moveToSearchScreen(optionGet: optionGetURL, with segueIdentifier: String) {
+    private func moveToSearchScreen(optionGet: OptionGetURL, with segueIdentifier: String) {
         DeviceService.shared.getOtherObject(OptionGet: optionGet, completion: { [weak self] (result) in
             switch result {
             case let .success(data):
@@ -82,17 +82,17 @@ class DeviceManagementVC: UIViewController {
             }
             destination.type = .add
         } else if segue.identifier == "CategoryFilter" {
-            guard let destination = segue.destination as? InfoSearchTableVC else {
-                return
-            }
-            destination.title = "Categories"
-            destination.inputData = dataToPassing
+//            guard let destination = segue.destination as? InfoSearchTableVC else {
+//                return
+//            }
+//            destination.title = "Categories"
+//            destination.inputData = dataToPassing
         } else if segue.identifier == "DeviceStatusFilter" {
-            guard let destination = segue.destination as? InfoSearchTableVC else {
-                return
-            }
-            destination.title = "Device Status"
-            destination.inputData = dataToPassing
+//            guard let destination = segue.destination as? InfoSearchTableVC else {
+//                return
+//            }
+//            destination.title = "Device Status"
+//            destination.inputData = dataToPassing
         }
     }
     

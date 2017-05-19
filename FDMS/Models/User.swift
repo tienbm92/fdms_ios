@@ -55,21 +55,21 @@ class User: Mappable {
         address <- map["address"]
         password <- map["password_digest"]
         resetDigest <- map["reset_digest"]
-        createdBy <- (map["created_by"], DateTransform())
-        updatedBy <- (map["updated_by"], DateTransform())
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdBy <- (map["created_by"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        updatedBy <- (map["updated_by"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        createdAt <- (map["created_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        updatedAt <- (map["updated_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
         rememberDigest <- map["remember_digest"]
         avatar <- map["avatar"]
         fromExcel <- map["from_excel"]
         gender <- map["gender"]
         role <- map["role"]
-        birthday <- (map["birthday"], DateTransform())
+        birthday <- (map["birthday"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
         employeeCode <- map["employee_code"]
         status <- map["status"]
-        contractDate <- (map["contract_date"], DateTransform())
-        startProbationDate <- (map["start_probation_date"], DateTransform())
-        endProbationDate <- (map["end_probation_date"], DateTransform())
+        contractDate <- (map["contract_date"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        startProbationDate <- (map["start_probation_date"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        endProbationDate <- (map["end_probation_date"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
     }
     
     init?(email: String?, password: String?, error: @escaping (String, Int) -> Void) {

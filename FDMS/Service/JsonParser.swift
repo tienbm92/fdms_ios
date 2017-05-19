@@ -33,7 +33,6 @@ enum OptionArrayOrObject {
 class JsonParser {
     
     static let share: JsonParser = JsonParser()
-    var optionParser: OptionParserRaw = .parserRawToUser
     
     func callToParser(option: OptionParserRaw, dataJson: Any) -> ParserResult? {
         var result: ParserResult?
@@ -54,7 +53,7 @@ class JsonParser {
         }
     }
     
-    func parserRawToObject(JsonInput json: Any) -> ParserResult? {
+    private func parserRawToObject(JsonInput json: Any) -> ParserResult? {
         var result = ParserResult()
         guard let jsonResult = json as? [String: Any],
             let data = jsonResult["data"] as? [String: Any]
@@ -67,10 +66,10 @@ class JsonParser {
             result.status = .normal
             result.dataObject = data
         }
-        return self.handleResult(result: result)
+        return result
     }
     
-    func parserRawToArray(JsonInput json: Any) -> ParserResult? {
+    private func parserRawToArray(JsonInput json: Any) -> ParserResult? {
         var result = ParserResult()
         guard let jsonResult = json as? [String: Any],
             let totalPages = jsonResult["total_pages"] as? Int,
@@ -84,10 +83,10 @@ class JsonParser {
             result.dataArray = data
             result.totalPages = totalPages
         }
-        return self.handleResult(result: result)
+        return result
     }
     
-    func parserRawNoTotalPages(JsonInput json: Any) -> ParserResult? {
+    private func parserRawNoTotalPages(JsonInput json: Any) -> ParserResult? {
         var result = ParserResult()
         guard let jsonResult = json as? [String: Any],
             let data = jsonResult["data"] as? [[String: Any]] else {
@@ -99,10 +98,10 @@ class JsonParser {
             result.status = .normal
             result.dataArray = data
         }
-        return self.handleResult(result: result)
+        return result
     }
     
-    func parserRawToUser(JsonInput json: Any) -> ParserResult? {
+    private func parserRawToUser(JsonInput json: Any) -> ParserResult? {
         var result = ParserResult()
         guard let jsonResult = json as? [String: Any],
             let data = jsonResult["data"] as? [String: Any],
@@ -117,7 +116,7 @@ class JsonParser {
             result.dataObject = data
             result.token = token
         }
-        return self.handleResult(result: result)
+        return result
     }
     
     private func handleResult(result: ParserResult) -> ParserResult {

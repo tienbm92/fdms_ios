@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
+                <rect key="frame" x="0.0" y="0.0" width="390" height="103.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devices Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wH-Nj-J55">
@@ -101,6 +101,7 @@
                 <outlet property="descriptionLabel" destination="tlO-45-KrF" id="XNn-3Z-6ua"/>
                 <outlet property="deviceCategoryLabel" destination="IXF-XE-Te7" id="lMG-YM-QEb"/>
                 <outlet property="devicesNumberLabel" destination="3wH-Nj-J55" id="PM2-JP-ead"/>
+                <outlet property="lineView" destination="GCX-Kc-ARe" id="Y6g-lL-lsi"/>
                 <outlet property="numberLabel" destination="FQ4-Wn-8yE" id="ncA-qb-fBi"/>
             </connections>
             <point key="canvasLocation" x="13" y="-109"/>

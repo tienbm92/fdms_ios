@@ -26,12 +26,6 @@ class LoginTableVC: UITableViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    fileprivate func pushTabbarVC() {
-        guard let tabBarVC = storyboard?.instantiateViewController(withIdentifier: "MainTabBarVC") else {
-            return
-        }
-        self.navigationController?.pushViewController(tabBarVC, animated: true)
-    }
     fileprivate func getUser() -> User? {
         return User(email: self.emailTextField?.text, password: self.passwordTextField?.text, error: { (message, _) in
             WindowManager.shared.showMessage(message: message, title: nil, completion: nil)
@@ -51,6 +45,7 @@ class LoginTableVC: UITableViewController {
                 case let .success(userResult):
                     if let userResult = userResult as? User {
                         DataStore.shared.user = userResult
+                        DataStore.shared.currentToken = UserService.share.getToken()
                     }
                     WindowManager.shared.directionTabbarVC()
                 case let .failure(error):

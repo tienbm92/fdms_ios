@@ -1,19 +1,18 @@
 //
-//  RequestManageCell.swift
+//  ManageRequestCell.swift
 //  FDMS
 //
-//  Created by Bui Minh Tien on 4/26/17.
+//  Created by Bùi Minh Tiến on 5/19/17.
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
 import UIKit
 
-class RequestManageCell: UITableViewCell {
-    
+class ManageRequestCell: UITableViewCell {
     @IBOutlet weak private var dateTimeLabel: UILabel!
     @IBOutlet weak private var requestForLabel: UILabel!
-    @IBOutlet weak private var statusLabel: UILabel!
     @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var statusLabel: UILabel!
     private var dateTimeLabelText: String?
     
     func setValueForCell(request: Request) {
@@ -35,5 +34,5 @@ class RequestManageCell: UITableViewCell {
         super.prepareForReuse()
         valueForCell(dateTimeLabel: nil, request: nil)
     }
- 
+    
 }

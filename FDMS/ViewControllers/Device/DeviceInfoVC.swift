@@ -35,6 +35,8 @@ class DeviceInfoVC: UITableViewController {
         modelNumberLabel.text = device.modelNumber
         priceLabel.text = String(device.originalPrice)
         dateLabel.text = device.boughtDate?.toDateString()
+        print(device.boughtDate?.toDateString())
+        print(device.boughtDate)
         deviceImage.sd_setImage(with: device.getImageURL(), placeholderImage: #imageLiteral(resourceName: "img_placeholder"))
     }
 

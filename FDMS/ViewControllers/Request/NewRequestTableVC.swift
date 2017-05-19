@@ -22,7 +22,7 @@ class NewRequestTableVC: UITableViewController {
     @IBAction func addDevice(_ sender: UIButton) {
         if let infoDeviceVC = self.childViewControllers[0] as? InfoDeviceTableVC {
             self.lineView.isHidden = false
-            infoDeviceVC.countDevices += 1
+//            infoDeviceVC.countDevices += 1
             infoDeviceVC.tableView.reloadData()
         }
     }

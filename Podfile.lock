@@ -5,14 +5,14 @@ PODS:
     - Charts/Core (= 3.0.1)
   - Charts/Core (3.0.1)
   - DACircularProgress (2.3.1)
-  - IDMPhotoBrowser (1.11.1):
+  - ESPullToRefresh (2.6)
+  - IDMPhotoBrowser (1.11):
     - DACircularProgress
     - pop
     - SDWebImage (= 4.0.0)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (2.2.2)
   - pop (1.0.9)
-  - PullToRefreshSwift (3.0.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -21,10 +21,10 @@ DEPENDENCIES:
   - Alamofire
   - BarcodeScanner
   - Charts
+  - ESPullToRefresh
   - IDMPhotoBrowser
-  - MBProgressHUD (~> 1.0.0)
+  - MBProgressHUD
   - ObjectMapper
-  - PullToRefreshSwift
   - SDWebImage
 
 SPEC CHECKSUMS:
@@ -32,13 +32,13 @@ SPEC CHECKSUMS:
   BarcodeScanner: 266ab4b479d407b74bc4b473fa5020b4523ad9e3
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  IDMPhotoBrowser: 14505b91019a96e36479606cb582f864446dae01
+  ESPullToRefresh: 85f4990acf87f78c6a1466bbbee7a75d7de24db9
+  IDMPhotoBrowser: b3c18767daf13d41ee61edb616199ec1105090ef
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  PullToRefreshSwift: 0743b818072bfd7c9464addc2d1b987b131057ca
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 6b47493ca626d5e19f747570aac1a796977c9b8b
+PODFILE CHECKSUM: 8517fc0106e3824ab0ff88a2dccf308adf24eeeb
 
 COCOAPODS: 1.2.0

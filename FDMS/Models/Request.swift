@@ -34,8 +34,8 @@ class Request: Mappable {
         requestFor <- map["request_for"]
         creater <- map["creater"]
         updater <- map["updater"]
-        createAt <- (map["created_at"], DateTransform())
-        updateAt <- (map["updated_at"], DateTransform())
+        createAt <- (map["created_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
+        updateAt <- (map["updated_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
         devices <- map["devices"]
     }
     

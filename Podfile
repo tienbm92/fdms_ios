@@ -4,10 +4,10 @@ target 'FDMS' do
   use_frameworks!
   pod 'BarcodeScanner'
   pod 'IDMPhotoBrowser'
-  pod 'MBProgressHUD', '~> 1.0.0'
-  pod 'PullToRefreshSwift'
+  pod 'MBProgressHUD'
   pod 'Charts'
   pod 'Alamofire'
   pod 'ObjectMapper'
   pod 'SDWebImage'
+  pod 'ESPullToRefresh'
 end

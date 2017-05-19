@@ -77,6 +77,7 @@ class APIService: NSObject {
     }
     
     func asGetRequest(parameters: [String: Any]?, url: String) -> URLRequest? {
+        let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
         if let url = URL(string: url) {
             do {
                 var urlrequest = URLRequest(url: url,
@@ -93,6 +94,7 @@ class APIService: NSObject {
     }
     
     func asChangeRequest(parameters: [String: Any]?, url: String, method: HTTPMethod) -> URLRequest? {
+        let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
         let paramString = parameters?.toHttpFormDataString()
         guard let url = URL(string: url),
             let paramData = paramString?.data(using: .utf8, allowLossyConversion: true), method != .get else {

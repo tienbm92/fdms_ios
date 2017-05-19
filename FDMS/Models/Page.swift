@@ -9,6 +9,6 @@
 import Foundation
 
 struct Page {
-    var page: Int = 0
-    var perPage: Int = 0
+    var page: Int = 1
+    var perPage: Int = 10
 }

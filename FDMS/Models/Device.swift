@@ -39,7 +39,7 @@ class Device: Mappable {
         deviceCategoryId <- map["device_category_id"]
         picture <- map["picture"]
         originalPrice <- map["original_price"]
-        boughtDate <- (map["bought_date"], DateTransform())
+        boughtDate <- (map["bought_date"], DateTransformCustom(dateFormat: kDateFormat))
         printedCode <- map["printed_code"]
         isBarcode <- map["is_barcode"]
         deviceStatusName <- map["device_status_name"]

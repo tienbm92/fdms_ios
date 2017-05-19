@@ -9,7 +9,7 @@
 import Alamofire
 import Foundation
 
-enum optionGetURL {
+enum OptionGetURL {
     case getRquestStatus
     case getDeviceStatus
     case getDeviceCategories
@@ -17,6 +17,29 @@ enum optionGetURL {
     case getDeviceById
     case getAssignTo
     case getRelativeTo
+    case getDeviceDashboad
+    case getRequestDashboad
+    
+    func toStringURL() -> String {
+        switch self {
+        case .getRquestStatus:
+            return kRequestStatusURL
+        case .getDeviceStatus:
+            return kDevicesStatus
+        case .getDeviceCategories:
+            return kDeviceCategoriesURL
+        case .getAssignTo:
+            return kAssignToURL
+        case .getRelativeTo:
+            return kRelativeToURL
+        case .getDeviceDashboad:
+            return kDeviceDashboad
+        case .getRequestDashboad:
+            return kRequestDashboad
+        default:
+            return ""
+        }
+    }
 }
 
 enum CompletionResult {
@@ -30,6 +53,7 @@ enum OptionParser {
     case parserGetOtherObject
     case parserGetRequests
     case parserUpdateOrAddRequest
+    case parserGetDashboad
 }
 
 class DeviceService: APIService {
@@ -55,9 +79,8 @@ class DeviceService: APIService {
                         Page page: Page, completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserGetListDevice
         if let urlRequest = self.createParamGetListDevices(categoryID: categoryID, statusID: statusID, page: page) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { [weak self] (result, error) in
-                if let result = result, let error = error {
-                    self?.errorInfo = error
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
@@ -68,11 +91,11 @@ class DeviceService: APIService {
         }
     }
     
-    func getOtherObject(OptionGet option: optionGetURL, completion: @escaping (CompletionResult) -> Void) {
+    func getOtherObject(OptionGet option: OptionGetURL, completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserGetOtherObject
         if let urlRequest = self.createParamGetOtherObject(OptionGet: option) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
-                if let result = result, let _ = error {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
@@ -83,17 +106,32 @@ class DeviceService: APIService {
         }
     }
     
-    func getDevice(optionGet option: optionGetURL, DeviceId deviceId: Int = 0,
+    func getDevice(optionGet option: OptionGetURL, DeviceId deviceId: Int = 0,
                    PrintedCode printedCode: String = "", completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserGetDevice
         if let urlRequest = self.createParamGetDevice(option: option, deviceId: deviceId, printedCode: printedCode) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
-                if let result = result, let _ = error {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
                 }
             })
+        }
+    }
+    
+    func getDashboad(OptionGet option: OptionGetURL, completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserGetDashboad
+        if let urlRequest = self.createParamGetOtherObject(OptionGet: option) {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        } else {
+            completion(.failure(APIServiceError.errorParseJSON))
         }
     }
     
@@ -136,6 +174,8 @@ class DeviceService: APIService {
             return self.parserGetDevice(data: data, error: error)
         case .parserGetOtherObject:
             return self.parserGetOtherObject(data: data, error: error)
+        case .parserGetDashboad:
+            return self.parserGetDashboad(data: data, error: error)
         default:
             return nil
         }
@@ -167,23 +207,8 @@ class DeviceService: APIService {
         }
     }
     
-    private func createParamGetOtherObject(OptionGet option: optionGetURL) -> URLRequest? {
-        var getURL = ""
-        switch option {
-        case .getDeviceCategories:
-            getURL = kDeviceCategoriesURL
-        case .getDeviceStatus:
-            getURL = kDevicesStatus
-        case .getRquestStatus:
-            getURL = kRequestStatusURL
-        case .getAssignTo:
-            getURL = kAssignToURL
-        case .getRelativeTo:
-            getURL = kRelativeToURL
-        default:
-            return nil
-        }
-        if let urlRequest = asGetRequest(parameters: nil, url: getURL) {
+    private func createParamGetOtherObject(OptionGet option: OptionGetURL) -> URLRequest? {
+        if let urlRequest = asGetRequest(parameters: nil, url: option.toStringURL()) {
             return urlRequest
         }
         return nil
@@ -191,7 +216,7 @@ class DeviceService: APIService {
     
     private func parserGetOtherObject(data: Any?, error: ErrorInfo?) -> [OtherObject]? {
         guard let response = data, let error = error,
-            let result = JsonParser.share.parserRawNoTotalPages(JsonInput: response),
+            let result = JsonParser.share.callToParser(option: .parserRawNoTotalPages, dataJson: response),
             let data = result.dataArray else {
                 return nil
         }
@@ -214,7 +239,7 @@ class DeviceService: APIService {
         }
     }
     
-    private func createParamGetDevice(option: optionGetURL, deviceId: Int, printedCode: String) -> URLRequest? {
+    private func createParamGetDevice(option: OptionGetURL, deviceId: Int, printedCode: String) -> URLRequest? {
         var paramInfo = [String: String]()
         switch option {
         case .getDeviceByCode:
@@ -234,7 +259,7 @@ class DeviceService: APIService {
     
     private func parserGetDevice(data: Any?, error: ErrorInfo?) -> Device? {
         guard let response = data, let error = error,
-            let result = JsonParser.share.parserRawToObject(JsonInput: response),
+            let result = JsonParser.share.callToParser(option: .parserRawToObject, dataJson: response),
             let data = result.dataObject else {
                 return nil
         }
@@ -246,6 +271,31 @@ class DeviceService: APIService {
             return deviceResult
         } else {
             return nil
+        }
+    }
+    
+    private func parserGetDashboad(data: Any?, error: ErrorInfo?) -> [Dashboard]? {
+        guard let response = data, let error = error,
+            let result = JsonParser.share.callToParser(option: .parserRawToArray, dataJson: response),
+            let data = result.dataArray else {
+            return nil
+        }
+        if error.status != 200 {
+            return nil
+        }
+        var dashboadResult = [Dashboard]()
+        for result in data {
+            let dashboad = Dashboard(JSON: result)
+            if let dashboad = dashboad {
+                dashboadResult.append(dashboad)
+            } else {
+                return nil
+            }
+        }
+        if dashboadResult.isEmpty {
+            return nil
+        } else {
+            return dashboadResult
         }
     }
     

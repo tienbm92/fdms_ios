@@ -14,6 +14,20 @@ enum optionActionRequest {
     case addRequest
 }
 
+enum optionGetRequests {
+    case manageRequests
+    case yourRequests
+    
+    func toStringURL() -> String {
+        switch self {
+        case .manageRequests:
+            return kManageRequestsURL
+        case .yourRequests:
+            return kYourRequestsURL
+        }
+    }
+}
+
 class RequestService: APIService {
     
     static let share: RequestService = RequestService()
@@ -33,13 +47,13 @@ class RequestService: APIService {
         }
     }
     
-    func getListRequests(UserID uid: Int, RequestStatusId statusId: Int?, RelativeID relativeID: Int?,
+    func getListRequests(option: optionGetRequests, RequestStatusId statusId: Int?, RelativeID relativeID: Int?,
                          Page page: Page, completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserGetRequests
-        if let urlRequest = self.createUrlRequest(UserID: uid, RequestStatusId: statusId,
+        if let urlRequest = self.createUrlRequest(OptionGetRequests: option, RequestStatusId: statusId,
                                                   RelativeID: relativeID, Page: page) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
-                if let result = result, let _ = error {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
@@ -54,8 +68,8 @@ class RequestService: APIService {
                             userId: Int, completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserUpdateOrAddRequest
         if let urlRequest = createParamUpdateOrAddRequest(option: option, request: request, userId: userId) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
-                if let result = result, let _ = error {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
@@ -89,22 +103,17 @@ class RequestService: APIService {
         }
     }
     
-    private func createUrlRequest(UserID uid: Int, RequestStatusId statusId: Int?, RelativeID relativeID: Int?,
-                                  Page page: Page) -> URLRequest? {
-        var paramDefault = ["user_id": "\(uid)", "per_page": "\(page.perPage)", "page": "\(page.page)"]
-        var param = [String: String]()
-        if let statusId = statusId, let relativeID = relativeID {
-            param = ["request_status_id": "\(statusId)", "relative_id": "\(relativeID)"]
-        }
+    private func createUrlRequest(OptionGetRequests option: optionGetRequests, RequestStatusId statusId: Int?,
+                                  RelativeID relativeID: Int?, Page page: Page) -> URLRequest? {
+        var paramDefault = ["per_page": "\(page.perPage)", "page": "\(page.page)"]
         if let statusId = statusId {
-            param = ["request_status_id": "\(statusId)"]
+            paramDefault["request_status_id"] = "\(statusId)"
         }
         if let relativeID = relativeID {
-            param = ["relative_id": "\(relativeID)"]
+            paramDefault["relative_id"] = "\(relativeID)"
         }
-        paramDefault.merge(with: param)
         if let paramResult = addRequestParams(dict: paramDefault),
-            let urlRequest = asGetRequest(parameters: paramResult.origin(), url: kRequestsURL) {
+            let urlRequest = asGetRequest(parameters: paramResult.origin(), url: option.toStringURL()) {
             return urlRequest
         }
         return nil
@@ -112,7 +121,7 @@ class RequestService: APIService {
     
     private func parserGetRequests(data: Any?, error: ErrorInfo?) -> [Request]? {
         guard let responseResult = data, let error = error,
-            let result = JsonParser.share.parserRawToArray(JsonInput: responseResult),
+            let result = JsonParser.share.callToParser(option: .parserRawToArray, dataJson: responseResult),
             let data = result.dataArray, let totalPages = result.totalPages else {
                 return nil
         }
@@ -149,11 +158,11 @@ class RequestService: APIService {
         var param = [String: String]()
         switch option {
         case .updateRequest:
-            url = kRequestsURL + "/" + "\(requestId)"
+            url = kYourRequestsURL + "/" + "\(requestId)"
             param = ["request[request_status_id]": "\(status)"]
         case .addRequest:
             actionMethod = .post
-            url = kRequestsURL
+            url = kYourRequestsURL
         }
         paramDefault.merge(with: param)
         if let paramResult = addRequestParams(dict: paramDefault),
@@ -165,7 +174,7 @@ class RequestService: APIService {
     
     private func parserUpdateOrAddRequest(data: Any?, error: ErrorInfo?) -> Request? {
         guard let response = data, let error = error,
-            let result = JsonParser.share.parserRawToObject(JsonInput: response),
+            let result = JsonParser.share.callToParser(option: .parserRawToObject, dataJson: response),
             let data = result.dataObject else {
                 return nil
         }

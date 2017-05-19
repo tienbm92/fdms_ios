@@ -21,7 +21,7 @@ enum OptionSearch {
 
 class InfoSearchRequestVC: UITableViewController {
     
-    fileprivate weak var delegate: InfoSearchRequestDelegate?
+    weak var delegate: InfoSearchRequestDelegate?
     fileprivate var searchDataInput: [OtherObject] = [OtherObject]()
     fileprivate var searchDataResult: [OtherObject] = [OtherObject]()
     fileprivate var optionSearch: OptionSearch = .requestStatus
@@ -32,6 +32,7 @@ class InfoSearchRequestVC: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = true
         searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.loadViewIfNeeded()
         definesPresentationContext = true
         self.tableView.tableHeaderView = searchController.searchBar
     }
@@ -65,11 +66,11 @@ class InfoSearchRequestVC: UITableViewController {
             self.delegate?.searchRequestVC(self, didCloseWith: searchDataResult[indexPath.row],
                                            optionSearch: optionSearch)
         }
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     fileprivate func filterContentForSearchText(searchText: String) {
-        self.searchDataInput = self.searchDataResult.filter({ (other) -> Bool in
+        self.searchDataResult = self.searchDataInput.filter({ (other) -> Bool in
             return other.name.lowercased().contains(searchText.lowercased())
         })
         self.tableView.reloadData()

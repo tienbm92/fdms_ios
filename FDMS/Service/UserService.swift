@@ -21,6 +21,7 @@ class UserService: APIService {
     
     static let share: UserService = UserService()
     fileprivate var errorInfo: ErrorInfo?
+    fileprivate var token: String = ""
     
     func getMessageError() -> String {
         if let error = self.errorInfo {
@@ -30,10 +31,14 @@ class UserService: APIService {
         }
     }
     
+    func getToken() -> String {
+        return self.token
+    }
+    
     func login(user: User, completion: @escaping (CompletionResult) -> Void) {
         if let urlRequest = self.createParamLogin(user: user) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, error) in
-                if let result = result, let _ = error {
+            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+                if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(APIServiceError.errorParseJSON))
@@ -71,12 +76,14 @@ class UserService: APIService {
     
     private func parserLogin(data: Any?, error: ErrorInfo?) -> User? {
         guard let response = data, let error = error,
-            let result = JsonParser.share.parserRawToUser(JsonInput: response),
+            let result = JsonParser.share.callToParser(option: .parserRawToUser, dataJson: response),
             let token = result.token,
             let data = result.dataObject else {
                 return nil
         }
-        DataStore.shared.currentToken = token
+        self.token = token
+        UserDefaults.standard.removeObject(forKey: kLoggedInUserKey)
+        UserDefaults.standard.set(token, forKey: kLoggedInUserKey)
         switch error.status {
         case StatusCode.invalidError.rawValue:
             return nil

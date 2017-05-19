@@ -9,6 +9,10 @@
 import Alamofire
 import Foundation
 
+// MARK: - Constants for LoginViewController
+
+let kLoggedInUserKey = "com.framgia.FDMS.loggedInUserJSON"
+
 // MARK: - Constants for Cell Id
 let buttonCellId = "ButtonCell"
 let infoDeviceRequestCell = "InfoDeviceRequestCell"
@@ -21,23 +25,25 @@ let kDeviceHistoryTitleCell = "DeviceHistoryTitle"
 let kDeviceHistoryCell = "DeviceHistory"
 let kDeviceUsingTitleCell = "DeviceUsingTitle"
 let kDeviceUsingCell = "DeviceUsing"
-let kRequestManageCell = "RequestManageCell"
+let kManageRequestCell = "ManageRequestCell"
 
 // MARK: - Constants for API
 
 let kFramgiaURL = "http://stg-dms.framgia.vn"
 let kBaseURL = "http://stg-dms.framgia.vn/api/v1/"
-let kRequestsURL = "\(kBaseURL)requests"
+let kYourRequestsURL = "\(kBaseURL)requests"
+let kManageRequestsURL = "\(kBaseURL)requests?manager_request=1"
 let kDeviceCategoriesURL = "\(kBaseURL)device_categories"
 let kRequestStatusURL = "\(kBaseURL)request_status"
 let kUserGroupURL = "\(kBaseURL)user_group"
 let kDeviceCodeURL = "\(kBaseURL)device_code"
 let kDevicesURL = "\(kBaseURL)devices"
 let kDevicesStatus = "\(kBaseURL)device_status"
-let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
 let kSignInURL = "\(kBaseURL)sessions"
 let kAssignToURL = "\(kBaseURL)user_assign"
 let kRelativeToURL = "\(kBaseURL)user_group"
+let kDeviceDashboad = "\(kBaseURL)device_dashboard"
+let kRequestDashboad = "\(kBaseURL)request_dashboard"
 let kTimeOut: TimeInterval = 60
 
 // MARK: - Constants for DataValidator
@@ -48,4 +54,5 @@ let kMinimumPasswordLength = 6
 // MARK: - Constants for Date Time Format
 
 let kDateFormat = "yyyy/MM/dd"
-let kTimeFormat = "HH:mm"
+let kTimeFormat = "HH:mm:ss"
+let kDateFormatTimeZone = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
