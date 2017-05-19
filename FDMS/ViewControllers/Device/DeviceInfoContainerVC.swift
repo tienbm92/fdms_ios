@@ -14,7 +14,16 @@ class DeviceInfoContainerVC: UIViewController {
     @IBOutlet private weak var historyView: UIView!
     @IBOutlet private weak var infoView: UIView!
     @IBOutlet private weak var closeButton: UIBarButtonItem!
-    var device: Device = Device()
+    //bui minh tien 04/05/2017- begin
+    //var device: Device = Device()
+    private var device: Device?
+    //end
+    
+    //bui minh tien 04/05/2017- begin
+    func setValue(_ device: Device) {
+        self.device = device
+    }
+    //end
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +54,13 @@ class DeviceInfoContainerVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDeviceInfo" {
-            guard let childVC = segue.destination as? DeviceInfoVC else {
+            //bui minh tien 04/05/2017- begin
+            guard let childVC = segue.destination as? DeviceInfoVC, let device = self.device else {
                 return
             }
-            childVC.device = self.device
+            //childVC.device = self.device
+            childVC.device = device
+            //end
         }
     }
     

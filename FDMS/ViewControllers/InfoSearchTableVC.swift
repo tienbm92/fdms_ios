@@ -10,13 +10,7 @@ import UIKit
 
 protocol InfoSearchDelegate: class {
     func searchViewController(_ searchViewController: InfoSearchTableVC, didCloseWith filter: AnyObject?,
-                              resultOption option: OptionFilter)
-}
-
-enum OptionFilter {
-    case categoriesDevices
-    case requestStatus
-    case user
+                              resultOption option: OptionSearch)
 }
 
 class InfoSearchTableVC: UITableViewController {

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct Request: Mappable {
+class Request: Mappable {
     var requestId: Int?
     var title: String?
     var description: String = ""
@@ -18,12 +18,14 @@ struct Request: Mappable {
     var requestFor: String?
     var creater: String = ""
     var updater: String = ""
-    var devices: [Device] = [Device]()
+    var createAt: Date?
+    var updateAt: Date?
+    var devices: [DevicesForRequest] = [DevicesForRequest]()
     
-    init?(map: Map) {
+    required init?(map: Map) {
     }
     
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         requestId <- map["id"]
         title <- map["title"]
         description <- map["description"]
@@ -32,6 +34,8 @@ struct Request: Mappable {
         requestFor <- map["request_for"]
         creater <- map["creater"]
         updater <- map["updater"]
+        createAt <- (map["created_at"], DateTransform())
+        updateAt <- (map["updated_at"], DateTransform())
         devices <- map["devices"]
     }
     

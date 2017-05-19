@@ -10,8 +10,6 @@ import UIKit
 
 class RequestDetailVC: UIViewController {
     
-    fileprivate let titleRequestArray: [String] = ["Description", "Title", "Request status",
-                                       "Request for", "Create by", "Updated by"]
     fileprivate var request: Request?
     fileprivate let titleButtonArray: [String] = ["Accept", "Cancel", "Edit"]
     @IBOutlet weak fileprivate var listRequestTableView: UITableView!
@@ -25,11 +23,47 @@ class RequestDetailVC: UIViewController {
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        self.pushEditRequestTableVC()
+    }
+    
+    func setValue(_ setRequest: Request) {
+        self.request = setRequest
+    }
+    
+    fileprivate func pushEditRequestTableVC() {
+        guard let editRequestVC = storyboard?.instantiateViewController(withIdentifier:
+            String(describing: EditRequestTableVC.self)) as? EditRequestTableVC, let request = self.request else {
+            return
+        }
+        editRequestVC.setValue(request: request)
+        self.navigationController?.pushViewController(editRequestVC, animated: true)
+    }
+    
+    fileprivate func updateRequest(statusUpdate: String) {
+        guard let request = self.request, let uid = DataStore.shared.user?.uid else {
+            return
+        }
+        request.requestStatus = statusUpdate
+        WindowManager.shared.showProgressView()
+        RequestService.share.updateOrAddRequest(OptionActionRequest: .updateRequest,
+                                                RequestUpdate: request, userId: uid) { [weak self] (result) in
+            WindowManager.shared.hideProgressView()
+            switch result {
+            case let .success(requestResult):
+                if let request = requestResult as? Request {
+                    self?.request = request
+                }
+            case let .failure(error):
+                print(error)
+                let message = RequestService.share.getMessage()
+                WindowManager.shared.showMessage(message: message, title: nil, completion: nil)
+            }
+        }
     }
     
 }
 
-extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
+extension RequestDetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
@@ -48,9 +82,13 @@ extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
                    numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 6
+            return 1
         case 1:
-            return 2
+            if let request = self.request, !request.devices.isEmpty {
+                return request.devices.count
+            } else {
+                return 0
+            }
         case 2:
             return 3
         default:
@@ -62,16 +100,20 @@ extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellReturn = UITableViewCell()
         if indexPath.section == 0 {
-            let infoRequestCell = tableView.dequeueReusableCell(withIdentifier: "InfoRequestCell", for: indexPath)
-            infoRequestCell.textLabel?.text = self.titleRequestArray[indexPath.row]
-            infoRequestCell.detailTextLabel?.text = self.titleRequestArray[indexPath.row]
+            guard let infoRequestCell = tableView.dequeueReusableCell(withIdentifier: "InfoRequestCell",
+                                                                      for: indexPath) as? InfoRequestCell,
+                let request = self.request else {
+                return UITableViewCell()
+            }
+            infoRequestCell.setValueForCell(request: request)
             cellReturn = infoRequestCell
         } else if indexPath.section == 1 {
             guard let infoDeviceCell = tableView.dequeueReusableCell(withIdentifier: "DeviceRequestCell",
-                                                                     for: indexPath) as? DeviceRequestCell
-                else {
+                                                                     for: indexPath) as? DeviceRequestCell,
+                let request = self.request else {
                     return UITableViewCell()
             }
+            infoDeviceCell.setValueForCell(device: request.devices[indexPath.row])
             cellReturn = infoDeviceCell
         } else if indexPath.section == 2 {
             guard let buttonCell = tableView.dequeueReusableCell(
@@ -82,6 +124,32 @@ extension RequestDetailVC: UITableViewDelegate, UITableViewDataSource {
             cellReturn = buttonCell
         }
         return cellReturn
+    }
+    
+}
+
+extension RequestDetailVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let request = self.request else {
+            return
+        }
+        let positionAccept = 1 + request.devices.count + 1
+        let positionCancel = 1 + request.devices.count + 2
+        let positionEdit = 1 + request.devices.count + 3
+        switch indexPath.row {
+        case positionAccept:
+            print("Accept")
+            self.updateRequest(statusUpdate: "waiting done")
+        case positionCancel:
+            print("Cancel")
+            self.updateRequest(statusUpdate: "cancelled")
+        case positionEdit:
+            print("Edit")
+            self.pushEditRequestTableVC()
+        default:
+            break
+        }
     }
     
 }

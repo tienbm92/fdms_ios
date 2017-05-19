@@ -14,5 +14,6 @@ class DataStore {
     var requests: [Request] = [Request]()
     var device: [Device] = [Device]()
     var currentToken: String = ""
+    var user: User?
     
 }

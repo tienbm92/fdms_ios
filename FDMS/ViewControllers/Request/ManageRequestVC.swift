@@ -15,10 +15,11 @@ class ManageRequestVC: UIViewController {
     @IBOutlet weak private var listRequestTableView: UITableView!
     fileprivate var filter: [AnyObject] = [AnyObject]()
     fileprivate var requests: [Request] = [Request]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getListRequest(userID: 11, statusId: nil, relativeId: nil)
+        self.listRequestTableView.register(UINib(nibName: "RequestManageCell", bundle: nil),
+                                           forCellReuseIdentifier: kRequestManageCell)
     }
     
     @IBAction func relativeToButton(_ sender: UIButton) {
@@ -26,38 +27,45 @@ class ManageRequestVC: UIViewController {
             let listUserRelative = self.getListUserRelative() else {
             return
         }
-//        self.pushSearchViewController(title: textButton, listUserRelative: listUserRelative, otherObject: nil)
+        self.pushSearchViewController(title: textButton, otherObject: listUserRelative, optionSearch: .relative)
     }
-    
+        
     @IBAction func requestStatusButton(_ sender: UIButton) {
         guard let textButton = self.statusButton.titleLabel?.text,
             let listStatus = self.getListStatus() else {
             return
         }
-//        self.pushSearchViewController(title: textButton, listUserRelative: nil, otherObject: listStatus)
+        self.pushSearchViewController(title: textButton, otherObject: listStatus, optionSearch: .requestStatus)
     }
     
-//    func pushSearchViewController(title textTitle: String, listUserRelative: [User]?, otherObject: [OtherObject]?) {
-//        guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
-//            String(describing: InfoSearchTableVC.self)) as? InfoSearchTableVC else {
-//            return
-//        }
-//        if let listUserRelative = listUserRelative {
-//            searchViewController.setProperty(input: listUserRelative)
-//        } else if let otherObject = otherObject {
-//            searchViewController.setProperty(input: otherObject)
-//        }
-//        searchViewController.title = textTitle
-//        self.navigationController?.pushViewController(searchViewController, animated: true)
-//    }
+    func pushSearchViewController(title textTitle: String, otherObject: [OtherObject], optionSearch: OptionSearch) {
+        guard let searchViewController = storyboard?.instantiateViewController(withIdentifier:
+            String(describing: InfoSearchTableVC.self)) as? InfoSearchRequestVC else {
+            return
+        }
+        searchViewController.setProperty(searchDataInput: otherObject, optionSearch: optionSearch)
+        searchViewController.title = textTitle
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    fileprivate func pushRequestDetailVC(index: Int) {
+        guard let requestDetailVC = storyboard?.instantiateViewController(withIdentifier:
+            String(describing: RequestDetailVC.self)) as? RequestDetailVC else {
+            return
+        }
+        requestDetailVC.setValue(self.requests[index])
+        self.navigationController?.pushViewController(requestDetailVC, animated: true)
+    }
     
     fileprivate func getListRequest(userID: Int, statusId: Int?, relativeId: Int?, perPage: Int = 10, page: Int = 1) {
         let page = Page(page: page, perPage: perPage)
-        RequestService.share.getListRequest(UserID: userID, RequestStatusId: statusId,
+        RequestService.share.getListRequests(UserID: userID, RequestStatusId: statusId,
                                             RelativeID: relativeId, Page: page) { [weak self] (requestResult) in
             switch requestResult {
             case let .success(requests):
-                self?.requests = requests
+                if let requests = requests as? [Request] {
+                    self?.requests = requests
+                }
             case let .failure(error):
                 self?.requests.removeAll()
                 WindowManager.shared.showMessage(message: error.localizedDescription, title: nil, completion: nil)
@@ -66,19 +74,37 @@ class ManageRequestVC: UIViewController {
         }
     }
     
-    fileprivate func getListUserRelative() -> [User]? {
-        guard let listUserRelative = self.filter as? [User] else {
-            return nil
+    fileprivate func getListUserRelative() -> [OtherObject]? {
+        var listUserRelative = [OtherObject]()
+        WindowManager.shared.showProgressView()
+        DeviceService.shared.getOtherObject(OptionGet: .getRelativeTo) { (result) in
+            WindowManager.shared.hideProgressView()
+            switch result {
+            case let .success(listRelativeResult):
+                if let listRelativeResult = listRelativeResult as? [OtherObject] {
+                    listUserRelative = listRelativeResult
+                }
+            case let .failure(error):
+                WindowManager.shared.showMessage(message: error.localizedDescription, title: nil, completion: nil)
+            }
         }
-        return listUserRelative
+        if listUserRelative.isEmpty {
+            return nil
+        } else {
+            return listUserRelative
+        }
     }
     
     fileprivate func getListStatus() -> [OtherObject]? {
         var listStatus = [OtherObject]()
+        WindowManager.shared.showProgressView()
         DeviceService.shared.getOtherObject(OptionGet: .getRquestStatus) { (result) in
+            WindowManager.shared.hideProgressView()
             switch result {
             case let .success(listStatusResult):
-                listStatus = listStatusResult
+                if let listStatusResult = listStatusResult as? [OtherObject] {
+                    listStatus = listStatusResult
+                }
             case let .failure(error):
                 WindowManager.shared.showMessage(message: error.localizedDescription, title: nil, completion: nil)
             }
@@ -99,29 +125,35 @@ extension ManageRequestVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoRequestCell", for: indexPath)
-        cell.textLabel?.text = self.requests[indexPath.row].title
-        cell.detailTextLabel?.text = self.requests[indexPath.row].description
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: kRequestManageCell,
+                                                       for: indexPath) as? RequestManageCell else {
+            return UITableViewCell()
+        }
+        cell.setValueForCell(request: requests[indexPath.row])
         return cell
     }
     
 }
 
-extension ManageRequestVC: InfoSearchDelegate {
+extension ManageRequestVC: UITableViewDelegate {
     
-    func searchViewController(_ searchViewController: InfoSearchTableVC, didCloseWith filter: AnyObject?,
-                              resultOption option: OptionFilter) {
-        switch option {
-        case .user:
-            if let filterUser = filter as? User {
-                self.relativeButton.titleLabel?.text = filterUser.name
-            }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.pushRequestDetailVC(index: indexPath.row)
+    }
+    
+}
+
+extension ManageRequestVC: InfoSearchRequestDelegate {
+    
+    func searchRequestVC(_ searchViewController: InfoSearchRequestVC, didCloseWith filter: OtherObject?,
+                         optionSearch: OptionSearch) {
+        switch optionSearch {
         case .requestStatus:
-            if let filterStatus = filter as? OtherObject {
-                self.statusButton.titleLabel?.text = filterStatus.name
-            }
+            self.statusButton.titleLabel?.text = filter?.name
+        case .relative:
+            self.relativeButton.titleLabel?.text = filter?.name
         default:
-            return
+            break
         }
     }
     
