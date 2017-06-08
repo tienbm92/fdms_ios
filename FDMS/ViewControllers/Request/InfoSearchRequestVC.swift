@@ -17,6 +17,9 @@ enum OptionSearch {
     case requestStatus
     case relative
     case assignee
+    case actionRequest
+    case deviceStatus
+    case deviceCategory
 }
 
 class InfoSearchRequestVC: UITableViewController {
@@ -30,7 +33,7 @@ class InfoSearchRequestVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.loadViewIfNeeded()
         definesPresentationContext = true

@@ -15,7 +15,7 @@ let kLoggedInUserKey = "com.framgia.FDMS.loggedInUserJSON"
 
 // MARK: - Constants for Cell Id
 let buttonCellId = "ButtonCell"
-let infoDeviceRequestCell = "InfoDeviceRequestCell"
+let kInfoDeviceRequestCell = "InfoDeviceRequestCell"
 let kPieChartCell = "PieChartCell"
 let kTopRequestTitleCell = "TopRequestTitleCell"
 let kTopRequestCell = "TopRequestCell"
@@ -26,6 +26,11 @@ let kDeviceHistoryCell = "DeviceHistory"
 let kDeviceUsingTitleCell = "DeviceUsingTitle"
 let kDeviceUsingCell = "DeviceUsing"
 let kManageRequestCell = "ManageRequestCell"
+let kInfoRequestCell = "InfoRequestCell"
+let kDevicesRequestCell = "DevicesRequestCell"
+let kDevicesAssignmentCell = "DevicesAssignmentCell"
+let kListTopDevicesCell = "ListTopDevicesCell"
+let kListTopRequestsCell = "ListTopRequestsCell"
 
 // MARK: - Constants for API
 
@@ -44,6 +49,10 @@ let kAssignToURL = "\(kBaseURL)user_assign"
 let kRelativeToURL = "\(kBaseURL)user_group"
 let kDeviceDashboad = "\(kBaseURL)device_dashboard"
 let kRequestDashboad = "\(kBaseURL)request_dashboard"
+let kTopRequests = "\(kRequestDashboad)?top_requests=1"
+let kTopDevices = "\(kDeviceDashboad)?top_devices=1"
+let kDeviceUsing = "\(kBaseURL)device_using"
+let kDeviceHistory = "\(kBaseURL)device_history"
 let kTimeOut: TimeInterval = 60
 
 // MARK: - Constants for DataValidator

@@ -25,9 +25,16 @@ class Device: Mappable {
     var isBarcode: Bool = false
     var deviceStatusName: String = ""
     var deviceCategoryName: String = ""
+    var dateTime: Date?
+    var description: String = ""
+    var deviceStatus: String = ""
+    var staff: String = ""
+    var fromDate: Date?
+    var returnDate: Date?
     
     init() {
     }
+    
     required init?(map: Map) {
     }
     
@@ -44,6 +51,12 @@ class Device: Mappable {
         isBarcode <- map["is_barcode"]
         deviceStatusName <- map["device_status_name"]
         deviceCategoryName <- map["device_category_name"]
+        dateTime <- map["date_time"]
+        description <- map["description"]
+        deviceStatus <- map["device_status"]
+        staff <- map["staff"]
+        fromDate <- map["from_date"]
+        returnDate <- map["return_date"]
     }
     
     func getImageURL() -> URL? {

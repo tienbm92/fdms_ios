@@ -99,25 +99,16 @@ class WindowManager: NSObject {
         }, completion: nil)
     }
     
-    func actionDetailRequest() {
-        self.alertWindow.windowLevel = self.getCurrentWindowLevel() + 0.1
-        let actionController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let actionAccept = UIAlertAction(title: "Accept", style: .destructive) { (_) in
-//            self.actionAccept()
+    func pushSearchViewController(_ controller: UIViewController, textTitle: String, otherObject: [OtherObject],
+                                  optionSearch: OptionSearch) {
+         guard let searchViewController = UIStoryboard.manageRequest.instantiateViewController(withIdentifier:
+            String(describing: InfoSearchRequestVC.self)) as? InfoSearchRequestVC else {
+                return
         }
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            WindowManager.shared.alertWindow.isHidden = true
-        }
-        let actionEdit = UIAlertAction(title: "Edit", style: .destructive) { (_) in
-//            self.pushEditRequestTableVC()
-        }
-        actionController.addAction(actionAccept)
-        actionController.addAction(actionCancel)
-        actionController.addAction(actionEdit)
-        DispatchQueue.main.async {
-            WindowManager.shared.alertWindow.isHidden = false
-            self.alertWindow.rootViewController?.present(actionController, animated: true, completion: nil)
-        }
+        searchViewController.setProperty(searchDataInput: otherObject, optionSearch: optionSearch)
+        searchViewController.title = textTitle
+        searchViewController.delegate = controller as? InfoSearchRequestDelegate
+        controller.navigationController?.pushViewController(searchViewController, animated: true)
     }
     
 }

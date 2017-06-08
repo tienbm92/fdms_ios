@@ -2,14 +2,14 @@
 //  InfoRequestCell.swift
 //  FDMS
 //
-//  Created by Bui Minh Tien on 4/27/17.
+//  Created by Bùi Minh Tiến on 5/28/17.
 //  Copyright © 2017 Framgia. All rights reserved.
 //
 
 import UIKit
 
 class InfoRequestCell: UITableViewCell {
-
+    
     @IBOutlet weak private var descriptionLabel: UILabel!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var statusLabel: UILabel!
@@ -41,3 +41,4 @@ class InfoRequestCell: UITableViewCell {
     }
     
 }
+

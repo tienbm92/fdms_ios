@@ -9,10 +9,14 @@
 import UIKit
 
 class DeviceHistoryVC: UITableViewController {
+    
+    fileprivate var devices: [Device] = [Device]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
     
     // MARK: - Table view data source
 

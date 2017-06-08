@@ -12,7 +12,7 @@ import ObjectMapper
 struct Dashboard: Mappable {
     
     var title: String = ""
-    var count: Int = 0
+    var count: Double = 0.00
     var color: String = ""
     var backgroundColor: UIColor?
     var hoverBackgroundColor: UIColor?

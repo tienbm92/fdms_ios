@@ -36,8 +36,8 @@ class UserService: APIService {
     }
     
     func login(user: User, completion: @escaping (CompletionResult) -> Void) {
-        if let urlRequest = self.createParamLogin(user: user) {
-            doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
+        if let inputApi = self.createParamLogin(user: user) {
+            doExecuteChangeRequest(inputApi, completion: { (result, _) in
                 if let result = result {
                     completion(.success(result))
                 } else {
@@ -49,17 +49,17 @@ class UserService: APIService {
         }
     }
     
-    private func createParamLogin(user: User) -> URLRequest? {
+    private func createParamLogin(user: User) -> APIInputBase? {
         var paramInfo = [String: String]()
         guard let password = user.password, let email = user.email else {
             return nil
         }
         paramInfo = ["user[email]": "\(email)", "user[password]": "\(password)"]
-        if let param = addRequestParams(dict: paramInfo),
-           let urlRequest = asChangeRequest(parameters: param.origin(), url: kSignInURL, method: .post) {
-            return urlRequest
+        if let param = addRequestParams(dict: paramInfo) {
+            return APIInputBase(urlString: kSignInURL, param: param.origin(), requestType: .post)
+        } else {
+            return nil
         }
-        return nil
     }
     
     override func onFinish(_ response: Any?, statusCode: Int, error: ErrorInfo?,

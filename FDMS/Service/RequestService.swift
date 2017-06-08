@@ -17,6 +17,7 @@ enum optionActionRequest {
 enum optionGetRequests {
     case manageRequests
     case yourRequests
+    case topRequest
     
     func toStringURL() -> String {
         switch self {
@@ -24,6 +25,8 @@ enum optionGetRequests {
             return kManageRequestsURL
         case .yourRequests:
             return kYourRequestsURL
+        case .topRequest:
+            return kTopRequests
         }
     }
 }
@@ -49,7 +52,7 @@ class RequestService: APIService {
     
     func getListRequests(option: optionGetRequests, RequestStatusId statusId: Int?, RelativeID relativeID: Int?,
                          Page page: Page, completion: @escaping (CompletionResult) -> Void) {
-        self.optionParser = .parserGetRequests
+        option == .topRequest ? (self.optionParser = .parserGetTopRequest) : (self.optionParser = .parserGetRequests)
         if let urlRequest = self.createUrlRequest(OptionGetRequests: option, RequestStatusId: statusId,
                                                   RelativeID: relativeID, Page: page) {
             doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
@@ -65,9 +68,39 @@ class RequestService: APIService {
     }
     
     func updateOrAddRequest(OptionActionRequest option: optionActionRequest, RequestUpdate request: Request,
-                            userId: Int, completion: @escaping (CompletionResult) -> Void) {
+                            device: [DevicesForRequest], completion: @escaping (CompletionResult) -> Void) {
         self.optionParser = .parserUpdateOrAddRequest
-        if let urlRequest = createParamUpdateOrAddRequest(option: option, request: request, userId: userId) {
+        if let apiInput = createParamUpdateOrAddRequest(option: option, request: request, device: device) {
+            doExecuteChangeRequest(apiInput, completion: { (result, _) in
+                if let result = result {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        } else {
+            completion(.failure(APIServiceError.errorParseJSON))
+        }
+    }
+    
+    func updateActionRequest(request: Request, completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserUpdateOrAddRequest
+        if let apiInput = createParamUpdateActionRequest(request: request) {
+            doExecuteChangeRequest(apiInput, completion: { (result, _) in
+                if let result = result {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIServiceError.errorParseJSON))
+                }
+            })
+        } else {
+            completion(.failure(APIServiceError.errorParseJSON))
+        }
+    }
+    
+    func getRequestById(requestId: Int, completion: @escaping (CompletionResult) -> Void) {
+        self.optionParser = .parserUpdateOrAddRequest
+        if let urlRequest = createParamGetRequestById(requestId: requestId) {
             doExecuteGetRequest(urlReuqest: urlRequest, completion: { (result, _) in
                 if let result = result {
                     completion(.success(result))
@@ -98,6 +131,8 @@ class RequestService: APIService {
             return self.parserGetRequests(data: data, error: error)
         case .parserUpdateOrAddRequest:
             return self.parserUpdateOrAddRequest(data: data, error: error)
+        case .parserGetTopRequest:
+            return self.parserGetTopRequest(data: data, error: error)
         default:
             return nil
         }
@@ -108,15 +143,19 @@ class RequestService: APIService {
         var paramDefault = ["per_page": "\(page.perPage)", "page": "\(page.page)"]
         if let statusId = statusId {
             paramDefault["request_status_id"] = "\(statusId)"
-        }
-        if let relativeID = relativeID {
+        } else if let relativeID = relativeID {
             paramDefault["relative_id"] = "\(relativeID)"
         }
-        if let paramResult = addRequestParams(dict: paramDefault),
-            let urlRequest = asGetRequest(parameters: paramResult.origin(), url: option.toStringURL()) {
+        if option == .topRequest, let urlRequest = asGetRequest(parameters: nil, url: option.toStringURL()) {
             return urlRequest
+        } else {
+            if let paramResult = addRequestParams(dict: paramDefault),
+                let urlRequest = asGetRequest(parameters: paramResult.origin(), url: option.toStringURL()) {
+                return urlRequest
+            } else {
+                return nil
+            }
         }
-        return nil
     }
     
     private func parserGetRequests(data: Any?, error: ErrorInfo?) -> [Request]? {
@@ -145,31 +184,65 @@ class RequestService: APIService {
         }
     }
     
-    private func createParamUpdateOrAddRequest(option: optionActionRequest,
-                                               request: Request, userId: Int) -> URLRequest? {
-        var url = ""
-        var actionMethod = HTTPMethod.patch
-        guard let title = request.title, let status = request.requestStatus, let requestId = request.requestId else {
+    private func parserGetTopRequest(data: Any?, error: ErrorInfo?) -> [Request]? {
+        guard let responseResult = data, let error = error,
+            let result = JsonParser.share.callToParser(option: .parserRawNoTotalPages, dataJson: responseResult),
+            let data = result.dataArray else {
+                return nil
+        }
+        if error.status == StatusCode.notFound.rawValue {
             return nil
         }
-        var paramDefault = ["request[title]": "\(title)", "request[description]": "\(request.description)",
-            "request[for_user_id]": "\(userId)", "request[assignee_id]": "\(request.assignee)",
-            "request[request_details_attributes]": "\(request.devices)"]
-        var param = [String: String]()
+        var listRequests = [Request]()
+        for requests in data {
+            let request = Request(JSON: requests)
+            if let request = request {
+                listRequests.append(request)
+            } else {
+                return nil
+            }
+        }
+        if listRequests.isEmpty {
+            return nil
+        } else {
+            return listRequests
+        }
+    }
+    
+    private func createParamUpdateOrAddRequest(option: optionActionRequest,
+                                               request: Request, device: [DevicesForRequest]) -> APIInputBase? {
+        var url = ""
+        var actionMethod = HTTPMethod.patch
+//        var paramDefault = ["request[title]": "\(request.title)",
+//            "request[description]": "\(String(describing: request.description))",
+//            "request[for_user_id]": "\(request.requestForId)", "request[assignee_id]": "\(request.assigneeId))",
+//            "request[request_details_attributes]": "\(deviceString)"]
+        var paramDefault: [String : Any] = ["request[title]": "\(request.title)",
+            "request[description]": "\(String(describing: request.description))",
+            "request[for_user_id]": request.requestForId, "request[assignee_id]": request.assigneeId]
+        var param = [String: Any]()
         switch option {
         case .updateRequest:
-            url = kYourRequestsURL + "/" + "\(requestId)"
-            param = ["request[request_status_id]": "\(status)"]
+            if let requestId = request.requestId {
+                url = kYourRequestsURL + "/" + "\(requestId)"
+                param = ["request[request_status_id]": request.requestStatusId]
+            } else {
+                return nil
+            }
         case .addRequest:
+            let deviceParam = buildMultiDevicesUpdate(device)
+            param = ["request[request_details_attributes]": deviceParam]
+            print(param)
             actionMethod = .post
             url = kYourRequestsURL
+            
         }
         paramDefault.merge(with: param)
-        if let paramResult = addRequestParams(dict: paramDefault),
-           let urlRequest = asChangeRequest(parameters: paramResult.origin(), url: url, method: actionMethod) {
-            return urlRequest
+        if let paramResult = addRequestParams(dict: paramDefault) {
+            return APIInputBase(urlString: url, param: paramResult.origin(), requestType: actionMethod)
+        } else {
+            return nil
         }
-        return nil
     }
     
     private func parserUpdateOrAddRequest(data: Any?, error: ErrorInfo?) -> Request? {
@@ -192,6 +265,42 @@ class RequestService: APIService {
         } else {
             return nil
         }
+    }
+    
+    private func createParamUpdateActionRequest(request: Request) -> APIInputBase? {
+        guard let requestId = request.requestId else {
+            return nil
+        }
+        let url = kYourRequestsURL + "/\(requestId)"
+        if let paramResult = addRequestParams(dict: ["request[request_status_id]": request.requestStatusId]) {
+            return APIInputBase(urlString: url, param: paramResult.origin(), requestType: .patch)
+        } else {
+            return nil
+        }
+    }
+    
+    private func createParamGetRequestById(requestId: Int) -> URLRequest? {
+        let url = kYourRequestsURL + "/\(requestId)"
+        if let urlRequest = asGetRequest(parameters: nil, url: url) {
+            return urlRequest
+        } else {
+            return nil
+        }
+    }
+    
+}
+
+extension RequestService {
+    
+    func buildMultiDevicesUpdate(_ devices: [DevicesForRequest]) -> [String] {
+        var paramResult = [String]()
+        for device in devices {
+            let dictDevice = device.buildDeviceForUpdate()
+            if let dictJson = dictDevice.convertDictToJson() {
+                paramResult.append(dictJson.splitString("\n  "))
+            }
+        }
+        return paramResult
     }
     
 }

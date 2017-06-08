@@ -27,6 +27,11 @@
 "format.is.invalid" = "%@ format is invalid";
 "less.than.characters" = "%@ can't be less than %d characters";
 "isLike" = "%@ and %@ have to be the same";
+"not.empty" = "Can not be empty";
+"action.empty" = "Action Empty";
+"data.empty" = "Empty data";
+"update.action.error" = "Update action error";
+"add.request.false" = "Add Request Error";
 
 // MARK: - Title
 "Device";

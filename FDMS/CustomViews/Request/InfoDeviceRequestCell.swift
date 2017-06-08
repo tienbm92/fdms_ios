@@ -10,14 +10,13 @@ import UIKit
 
 class InfoDeviceRequestCell: UITableViewCell {
     
-    @IBOutlet weak private var devicesNumberLabel: UILabel!
     @IBOutlet weak private var descriptionLabel: UILabel!
     @IBOutlet weak private var deviceCategoryLabel: UILabel!
     @IBOutlet weak private var numberLabel: UILabel!
     @IBOutlet weak private var lineView: UIView!
     
-    func setValue(deviceValue: DevicesForRequest, countDevice: Int, lineViewHidden: Bool) {
-        valueForCell(deviceValue: deviceValue, countDevice: countDevice)
+    func setValue(deviceValue: DevicesForRequest, lineViewHidden: Bool) {
+        valueForCell(deviceValue: deviceValue)
         if lineViewHidden {
             self.lineView.isHidden = true
         } else {
@@ -25,16 +24,15 @@ class InfoDeviceRequestCell: UITableViewCell {
         }
     }
     
-    private func valueForCell(deviceValue: DevicesForRequest?, countDevice: Int?) {
-        self.devicesNumberLabel.text = "\(deviceValue?.number ?? 0)"
+    private func valueForCell(deviceValue: DevicesForRequest?) {
         self.descriptionLabel.text = deviceValue?.description
         self.deviceCategoryLabel.text = deviceValue?.categoryName
-        self.numberLabel.text = "\(countDevice ?? 0)"
+        self.numberLabel.text = "\(deviceValue?.number ?? 0)"
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        valueForCell(deviceValue: nil, countDevice: nil)
+        valueForCell(deviceValue: nil)
     }
     
 }

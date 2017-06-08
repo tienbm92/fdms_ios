@@ -11,16 +11,33 @@ import ObjectMapper
 
 class Request: Mappable {
     var requestId: Int?
-    var title: String?
+    var title: String = ""
     var description: String = ""
     var requestStatus: String?
-    var assignee: String = ""
+    var requestStatusId: Int = 0
+    var assignee: String?
+    var assigneeId: Int = 0
     var requestFor: String?
+    var requestForId: Int = 0
     var creater: String = ""
     var updater: String = ""
     var createAt: Date?
     var updateAt: Date?
-    var devices: [DevicesForRequest] = [DevicesForRequest]()
+    var devices: [DevicesForRequest]?
+    var devicesAssignment: [DeviceAssignment]?
+    var listAction: [OtherObject]?
+    
+    init?(title: String?, description: String?, assignToId: Int?, requestForId: Int?, devices: [DevicesForRequest]?) {
+        guard let title = title, let description = description, let requestForId = requestForId,
+            let assignToId = assignToId else {
+            return nil
+        }
+        self.title = title
+        self.description = description
+        self.assigneeId = assignToId
+        self.requestForId = requestForId
+        self.devices = devices
+    }
     
     required init?(map: Map) {
     }
@@ -37,6 +54,8 @@ class Request: Mappable {
         createAt <- (map["created_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
         updateAt <- (map["updated_at"], DateTransformCustom(dateFormat: kDateFormatTimeZone))
         devices <- map["devices"]
+        devicesAssignment <- map["device_assignment"]
+        listAction <- map["list_action"]
     }
     
 }

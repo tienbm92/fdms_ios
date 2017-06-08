@@ -21,4 +21,13 @@ extension String: ParameterEncoding {
         return request
     }
     
+    func splitString(_ charSplit: String) -> String {
+        var result = String()
+        let numbers = self.components(separatedBy: charSplit)
+        for item in numbers {
+            result = result + item
+        }
+        return result
+    }
+    
 }

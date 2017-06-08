@@ -33,6 +33,19 @@ class APIService: NSObject {
         })
     }
     
+    func doExecuteChangeRequest(_ input: APIInputBase, completion: @escaping NetworkServiceCompletion) {
+        self.startTimeoutTimer()
+        let headers = input.headers
+        Alamofire.request(input.urlString,
+                          method: input.requestType,
+                          parameters: input.param,
+                          encoding: input.encoding,
+                          headers: headers).responseJSON
+        { [weak self] (response) in
+            self?.processResponseRequest(response, completion: completion)
+        }
+    }
+    
     func startTimeoutTimer() {
         self.stopTimeoutTimer()
         self.timeout = Timer.scheduledTimer(timeInterval: kTimeOut, target: self,
@@ -93,25 +106,25 @@ class APIService: NSObject {
         return nil
     }
     
-    func asChangeRequest(parameters: [String: Any]?, url: String, method: HTTPMethod) -> URLRequest? {
-        let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
-        let paramString = parameters?.toHttpFormDataString()
-        guard let url = URL(string: url),
-            let paramData = paramString?.data(using: .utf8, allowLossyConversion: true), method != .get else {
-            return nil
-        }
-        do {
-            var urlRequest = URLRequest(url: url,
-                                        cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData,
-                                        timeoutInterval: kTimeOut)
-            urlRequest.allHTTPHeaderFields = kHeaders
-            urlRequest.httpMethod = method.rawValue
-            urlRequest.httpBody = paramData
-            return try URLEncoding.queryString.encode(urlRequest, with: nil)
-        } catch {
-            return nil
-        }
-    }
+//    func asChangeRequest(parameters: [String: Any]?, url: String, method: HTTPMethod) -> URLRequest? {
+//        let kHeaders: HTTPHeaders = ["Authorization": "\(DataStore.shared.currentToken)", "Accept": "application/json"]
+//        let paramString = parameters?.toHttpFormDataString()
+//        guard let url = URL(string: url),
+//            let paramData = paramString?.data(using: .utf8, allowLossyConversion: true), method != .get else {
+//            return nil
+//        }
+//        do {
+//            var urlRequest = URLRequest(url: url,
+//                                        cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData,
+//                                        timeoutInterval: kTimeOut)
+//            urlRequest.allHTTPHeaderFields = kHeaders
+//            urlRequest.httpMethod = method.rawValue
+//            urlRequest.httpBody = paramData
+//            return try URLEncoding.queryString.encode(urlRequest, with: nil)
+//        } catch {
+//            return nil
+//        }
+//    }    
     
     func parserError(_ response: Any?) -> ErrorInfo? {
         if let responseDict = response as? [String: Any], let status = responseDict["status"] as? Int,
@@ -127,7 +140,7 @@ class APIService: NSObject {
         })
     }
     
-    func addRequestParams(dict: [String: String]) -> RequestParams? {
+    func addRequestParams(dict: [String: Any]) -> RequestParams? {
         let param = RequestParams()
         if dict.isEmpty {
             return nil
